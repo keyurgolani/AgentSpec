@@ -1,0 +1,30 @@
+{
+  "instructions": [
+    {
+      "id": "microservices_architecture",
+      "version": "1.0.0",
+      "tags": ["architecture", "microservices", "scalability", "distributed"],
+      "content": "Design microservices with proper boundaries, communication patterns, and distributed system concerns like circuit breakers and bulkheads.",
+      "metadata": {
+        "category": "architecture",
+        "priority": 6,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "feature_flags",
+      "version": "1.0.0",
+      "tags": ["feature-flags", "deployment", "rollout", "experimentation"],
+      "content": "Implement feature flag system for controlled rollouts, A/B testing, and quick rollback capabilities. Use proper flag lifecycle management.",
+      "metadata": {
+        "category": "architecture",
+        "priority": 5,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

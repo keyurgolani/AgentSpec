@@ -1,0 +1,69 @@
+{
+  "instructions": [
+    {
+      "id": "project_initialization",
+      "version": "1.0.0",
+      "tags": ["project-setup", "initialization", "scaffolding", "structure"],
+      "content": "Initialize project with proper directory structure, package.json/pyproject.toml, README.md, and .gitignore. Set up development environment with consistent tooling and configuration.",
+      "metadata": {
+        "category": "project-setup",
+        "priority": 10,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "dependency_management",
+      "version": "1.0.0",
+      "tags": ["project-setup", "dependencies", "package-management", "security"],
+      "content": "Use lock files (package-lock.json, poetry.lock, Pipfile.lock) for reproducible builds. Regularly audit dependencies for security vulnerabilities. Pin major versions and use semantic versioning ranges appropriately.",
+      "metadata": {
+        "category": "project-setup",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "environment_configuration",
+      "version": "1.0.0",
+      "tags": ["project-setup", "environment", "configuration", "deployment"],
+      "content": "Use environment variables for configuration. Create .env.example with all required variables. Implement configuration validation and provide clear error messages for missing or invalid config.",
+      "metadata": {
+        "category": "project-setup",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "code_formatting",
+      "version": "1.0.0",
+      "tags": ["project-setup", "formatting", "standards", "automation"],
+      "content": "Set up automated code formatting with Prettier, Black, or similar tools. Configure pre-commit hooks to enforce formatting. Use consistent indentation, line endings, and file encoding across the project.",
+      "metadata": {
+        "category": "project-setup",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "editor_configuration",
+      "version": "1.0.0",
+      "tags": ["project-setup", "editor", "ide", "consistency"],
+      "content": "Create .editorconfig file for consistent editor settings. Provide VS Code/IDE configuration files with recommended extensions and settings. Document development environment setup in README.",
+      "metadata": {
+        "category": "project-setup",
+        "priority": 6,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

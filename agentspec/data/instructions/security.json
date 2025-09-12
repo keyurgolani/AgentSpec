@@ -1,0 +1,121 @@
+{
+  "instructions": [
+    {
+      "id": "secure_coding_practices",
+      "version": "1.0.0",
+      "tags": ["security", "coding", "vulnerabilities", "owasp"],
+      "content": "Follow OWASP secure coding practices. Validate all inputs, sanitize outputs, use parameterized queries, implement proper authentication and authorization. Never trust user input or external data sources.",
+      "metadata": {
+        "category": "security",
+        "priority": 10,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "secrets_management",
+      "version": "1.0.0",
+      "tags": ["security", "secrets", "credentials", "encryption"],
+      "content": "Use dedicated secret management systems (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault). Rotate secrets regularly. Never hardcode credentials or API keys. Use environment variables or secure vaults for sensitive data.",
+      "metadata": {
+        "category": "security",
+        "priority": 10,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "security_headers",
+      "version": "1.0.0",
+      "tags": ["security", "headers", "web", "protection"],
+      "content": "Implement security headers: Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Strict-Transport-Security, X-XSS-Protection. Use HTTPS everywhere and implement proper CORS policies.",
+      "metadata": {
+        "category": "security",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "vulnerability_scanning",
+      "version": "1.0.0",
+      "tags": ["security", "scanning", "vulnerabilities", "automation"],
+      "content": "Integrate automated vulnerability scanning in CI/CD pipeline. Use tools like Snyk, OWASP ZAP, or Bandit for dependency and code scanning. Address high and critical vulnerabilities immediately.",
+      "metadata": {
+        "category": "security",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "secure_communication",
+      "version": "1.0.0",
+      "tags": ["security", "communication", "encryption", "tls"],
+      "content": "Use TLS 1.2+ for all communications. Implement certificate pinning for mobile apps. Use secure protocols (HTTPS, WSS) and validate certificates. Encrypt sensitive data at rest and in transit.",
+      "metadata": {
+        "category": "security",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "input_validation_guardrails",
+      "version": "1.0.0",
+      "tags": ["security", "validation", "input-sanitization", "injection"],
+      "content": "Implement comprehensive input validation and sanitization to prevent injection attacks. Filter outputs to block insecure code patterns, apply rate limits to prevent DoS attacks. Automatically flag and block code containing hardcoded secrets or SQL injection vulnerabilities.",
+      "metadata": {
+        "category": "security",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "regulatory_compliance",
+      "version": "1.0.0",
+      "tags": ["security", "compliance", "privacy", "rbac", "gdpr", "hipaa"],
+      "content": "Ensure alignment with privacy laws (GDPR, HIPAA) and industry standards. Implement role-based access control (RBAC) integrated with identity providers, automatically redact PII from data processing, maintain detailed audit trails for compliance reporting.",
+      "metadata": {
+        "category": "security",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "security_monitoring",
+      "version": "1.0.0",
+      "tags": ["security", "monitoring", "detection", "response"],
+      "content": "Implement security monitoring with intrusion detection, anomaly detection, and automated response systems. Conduct regular security assessments and penetration testing. Maintain incident response procedures and security playbooks.",
+      "metadata": {
+        "category": "security",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "rate_limiting",
+      "version": "1.0.0",
+      "tags": ["security", "rate-limiting", "api", "performance"],
+      "content": "Implement rate limiting with appropriate strategies (fixed window, sliding window, token bucket) based on use case requirements. Protect against abuse and ensure fair resource usage.",
+      "metadata": {
+        "category": "security",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "api_versioning",
+      "version": "1.0.0",
+      "tags": ["api", "versioning", "compatibility", "evolution"],
+      "content": "Implement proper API versioning strategy (URL path, header, or query parameter). Maintain backward compatibility and provide clear deprecation timelines. Document breaking changes and migration paths.",
+      "metadata": {
+        "category": "api-integration",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "api_documentation",
+      "version": "1.0.0",
+      "tags": ["api", "documentation", "openapi", "swagger"],
+      "content": "Create comprehensive API documentation with OpenAPI/Swagger specifications. Include examples, error codes, authentication details, and interactive testing capabilities.",
+      "metadata": {
+        "category": "api-integration",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "api_testing",
+      "version": "1.0.0",
+      "tags": ["api", "testing", "contract", "integration"],
+      "content": "Implement comprehensive API testing including contract tests, integration tests, and consumer-driven contract testing. Use tools like Postman, Newman, or Pact for API validation.",
+      "metadata": {
+        "category": "api-integration",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "third_party_integration",
+      "version": "1.0.0",
+      "tags": ["api", "integration", "third-party", "reliability"],
+      "content": "Implement robust third-party API integration with retry logic, circuit breakers, timeouts, and fallback mechanisms. Handle rate limits and implement proper error handling for external dependencies.",
+      "metadata": {
+        "category": "api-integration",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

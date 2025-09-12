@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "user_feedback_integration",
+      "version": "1.0.0",
+      "tags": ["ux", "feedback", "analytics", "improvement"],
+      "content": "Integrate user feedback mechanisms with analytics, surveys, and user testing. Implement feedback loops to continuously improve user experience based on real usage data.",
+      "metadata": {
+        "category": "user-experience",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "error_user_experience",
+      "version": "1.0.0",
+      "tags": ["ux", "error-handling", "messaging", "recovery"],
+      "content": "Design user-friendly error experiences with clear messages, recovery suggestions, and graceful degradation. Avoid technical jargon and provide actionable next steps for users.",
+      "metadata": {
+        "category": "user-experience",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "loading_states",
+      "version": "1.0.0",
+      "tags": ["ux", "loading", "performance", "feedback"],
+      "content": "Implement proper loading states with progress indicators, skeleton screens, and optimistic updates. Provide feedback for long-running operations and allow cancellation when appropriate.",
+      "metadata": {
+        "category": "user-experience",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "onboarding_experience",
+      "version": "1.0.0",
+      "tags": ["ux", "onboarding", "tutorial", "engagement"],
+      "content": "Design effective user onboarding with progressive disclosure, interactive tutorials, and clear value proposition. Minimize time to first value and provide contextual help.",
+      "metadata": {
+        "category": "user-experience",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

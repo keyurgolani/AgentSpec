@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task Context Schema",
+  "description": "Schema for validating AgentSpec task contexts",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the task context"
+    },
+    "title": {
+      "type": "string",
+      "description": "Task title",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "description": "Task description",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "completed",
+        "blocked",
+        "cancelled"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "estimated_duration": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "actual_duration": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assignee": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "created_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "due_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "completion_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "custom_fields": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "category"
+      ]
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "dependency_type": {
+            "type": "string"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "is_hard_dependency": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "task_id",
+          "dependency_type"
+        ]
+      }
+    },
+    "sub_tasks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parent_task": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "template_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "context_data": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "status",
+    "metadata"
+  ],
+  "additionalProperties": false
+}

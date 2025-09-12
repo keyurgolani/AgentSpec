@@ -1,0 +1,134 @@
+{
+  "instructions": [
+    {
+      "id": "api_design",
+      "version": "1.0.0",
+      "tags": ["api", "design", "rest", "standards"],
+      "content": "Follow RESTful principles with proper HTTP status codes, versioning, pagination, filtering, and comprehensive documentation. Implement consistent error responses.",
+      "metadata": {
+        "category": "backend",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "database_optimization",
+      "version": "1.0.0",
+      "tags": ["database", "performance", "optimization", "queries"],
+      "content": "Optimize queries with proper indexing, connection pooling, and query analysis. Implement database migrations with rollback capabilities.",
+      "metadata": {
+        "category": "backend",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "webhook_handling",
+      "version": "1.0.0",
+      "tags": ["webhooks", "api", "integration", "reliability"],
+      "content": "Implement robust webhook handling with validation, retry logic, idempotency, and security measures like signature verification.",
+      "metadata": {
+        "category": "backend",
+        "priority": 6,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "real_time_features",
+      "version": "1.0.0",
+      "tags": ["realtime", "websockets", "sse", "notifications"],
+      "content": "Implement real-time features using WebSockets or Server-Sent Events with connection management, reconnection logic, and scalability considerations.",
+      "metadata": {
+        "category": "backend",
+        "priority": 6,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "search_functionality",
+      "version": "1.0.0",
+      "tags": ["search", "elasticsearch", "indexing", "performance"],
+      "content": "Implement efficient search with proper indexing, full-text search capabilities, faceted search, and search analytics.",
+      "metadata": {
+        "category": "backend",
+        "priority": 5,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "payment_processing",
+      "version": "1.0.0",
+      "tags": ["payments", "security", "integration", "compliance"],
+      "content": "Implement secure payment processing with PCI compliance, proper error handling, refund capabilities, and webhook handling for payment providers.",
+      "metadata": {
+        "category": "backend",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "architectural_design",
+      "version": "1.0.0",
+      "tags": ["backend", "architecture", "design", "patterns"],
+      "content": "Design backend architecture with clear separation of concerns, proper layering, and appropriate design patterns. Compare architectural approaches (hexagonal, layered, microservices) and choose based on project requirements and constraints.",
+      "metadata": {
+        "category": "backend",
+        "priority": 7,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "test_driven_backend_development",
+      "version": "1.0.0",
+      "tags": ["backend", "tdd", "testing", "quality"],
+      "content": "Implement Test-Driven Development for backend services. Write comprehensive unit tests first, ensuring they fail initially, then implement code to make tests pass. Tests serve as executable specifications and provide guardrails against regressions.",
+      "metadata": {
+        "category": "backend",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "api_boilerplate_generation",
+      "version": "1.0.0",
+      "tags": ["backend", "api", "crud", "boilerplate", "scaffolding"],
+      "content": "Generate backend service boilerplate efficiently: RESTful API endpoints, full CRUD operations, data models and database schemas. Specify technologies clearly (Django, PostgreSQL, Node.js) and define data structures comprehensively for consistent results.",
+      "metadata": {
+        "category": "backend",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "incremental_backend_development",
+      "version": "1.0.0",
+      "tags": ["backend", "incremental", "modularity", "quality"],
+      "content": "Break down backend implementation into manageable steps: 1. Generate data model, 2. Create database migration, 3. Implement service layer logic, 4. Build API controller. Validate each step before proceeding to ensure clean, maintainable results.",
+      "metadata": {
+        "category": "backend",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "instructions": [
+    {
+      "id": "frontend_state_management",
+      "version": "1.0.0",
+      "tags": ["frontend", "state", "react", "vue", "angular"],
+      "content": "Implement proper state management patterns (Redux, Vuex, NgRx) for complex applications. Avoid prop drilling and ensure predictable state updates.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "accessibility_compliance",
+      "version": "1.0.0",
+      "tags": ["accessibility", "frontend", "ui", "compliance"],
+      "content": "Ensure WCAG 2.1 AA compliance with proper ARIA labels, keyboard navigation, color contrast ratios, and screen reader compatibility.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "mobile_responsiveness",
+      "version": "1.0.0",
+      "tags": ["frontend", "mobile", "responsive", "ui"],
+      "content": "Ensure full mobile responsiveness with touch-friendly interfaces, proper viewport settings, and performance optimization for mobile devices.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "progressive_web_app",
+      "version": "1.0.0",
+      "tags": ["frontend", "pwa", "offline", "performance"],
+      "content": "Implement Progressive Web App features with service workers, offline functionality, push notifications, and app-like experience. Use web app manifest and implement proper caching strategies.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "component_architecture",
+      "version": "1.0.0",
+      "tags": ["frontend", "components", "architecture", "reusability"],
+      "content": "Build reusable, composable components with clear interfaces and single responsibilities. Implement proper component lifecycle management and state isolation.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "frontend_performance",
+      "version": "1.0.0",
+      "tags": ["frontend", "performance", "optimization", "loading"],
+      "content": "Optimize frontend performance with code splitting, lazy loading, image optimization, and efficient bundling. Minimize render blocking resources and implement performance budgets.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "design_to_code_conversion",
+      "version": "1.0.0",
+      "tags": ["frontend", "design", "conversion", "ui", "prototyping"],
+      "content": "Translate visual designs into functional code efficiently. Convert high-fidelity mockups from Figma or sketches into HTML, CSS, and component-based code (React, Vue). Focus on maintaining design fidelity while ensuring responsive behavior and accessibility.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 7,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "component_generation",
+      "version": "1.0.0",
+      "tags": ["frontend", "components", "reusability", "modularity"],
+      "content": "Generate specific UI components with clear requirements and specifications. Focus on proper state management, accessibility compliance, and reusability. Always review generated components for UX best practices before integration.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 7,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "frontend_debugging",
+      "version": "1.0.0",
+      "tags": ["frontend", "debugging", "troubleshooting", "browser-tools"],
+      "content": "Use browser developer tools effectively for debugging frontend issues. Analyze network requests, inspect DOM changes, profile performance, and debug JavaScript execution. Implement proper error boundaries and logging for production debugging.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 6,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

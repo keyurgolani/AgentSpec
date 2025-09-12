@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "data_validation",
+      "version": "1.0.0",
+      "tags": ["data", "validation", "integrity", "quality"],
+      "content": "Implement comprehensive data validation at all system boundaries. Use schema validation, type checking, range validation, and business rule validation. Provide clear error messages for validation failures.",
+      "metadata": {
+        "category": "data-management",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "data_transformation",
+      "version": "1.0.0",
+      "tags": ["data", "transformation", "etl", "processing"],
+      "content": "Implement robust data transformation pipelines with error handling, data quality checks, and monitoring. Use appropriate tools for ETL/ELT processes and maintain data lineage.",
+      "metadata": {
+        "category": "data-management",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "data_archival",
+      "version": "1.0.0",
+      "tags": ["data", "archival", "retention", "lifecycle"],
+      "content": "Implement data lifecycle management with automated archival, retention policies, and secure deletion. Consider regulatory requirements and implement data classification schemes.",
+      "metadata": {
+        "category": "data-management",
+        "priority": 6,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "data_synchronization",
+      "version": "1.0.0",
+      "tags": ["data", "synchronization", "consistency", "replication"],
+      "content": "Implement data synchronization between systems with conflict resolution, eventual consistency patterns, and data integrity checks. Handle network partitions and system failures gracefully.",
+      "metadata": {
+        "category": "data-management",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

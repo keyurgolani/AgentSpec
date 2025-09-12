@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "comprehensive_monitoring",
+      "version": "1.0.0",
+      "tags": ["monitoring", "observability", "metrics", "alerting"],
+      "content": "Implement comprehensive monitoring with metrics, logs, and traces. Set up meaningful alerts for critical failures and performance degradation. Use SLIs and SLOs to define service reliability targets.",
+      "metadata": {
+        "category": "monitoring",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "intelligent_anomaly_detection",
+      "version": "1.0.0",
+      "tags": ["monitoring", "anomaly-detection", "proactive", "analysis"],
+      "content": "Transform monitoring from reactive alerting to proactive observability. Use advanced anomaly detection in logs, traces, and metrics to identify subtle deviations indicating impending issues. Automate root cause analysis by correlating data from multiple sources.",
+      "metadata": {
+        "category": "monitoring",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "performance_monitoring",
+      "version": "1.0.0",
+      "tags": ["monitoring", "performance", "apm", "optimization"],
+      "content": "Implement Application Performance Monitoring (APM) with detailed transaction tracing, database query analysis, and resource utilization tracking. Monitor user experience metrics and business KPIs.",
+      "metadata": {
+        "category": "monitoring",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "incident_response",
+      "version": "1.0.0",
+      "tags": ["monitoring", "incident-response", "alerting", "escalation"],
+      "content": "Establish incident response procedures with clear escalation paths, runbooks, and post-mortem processes. Implement intelligent alerting to reduce noise and focus on actionable issues.",
+      "metadata": {
+        "category": "monitoring",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

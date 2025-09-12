@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "code_review_mindset",
+      "version": "1.0.0",
+      "tags": ["code-quality", "code-review", "quality", "best-practices", "validation"],
+      "content": "Approach code with a reviewer's mindset. Look for potential issues, edge cases, security vulnerabilities, and maintainability concerns. Suggest improvements and alternatives when appropriate.",
+      "metadata": {
+        "category": "code-quality",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "continuous_validation_loop",
+      "version": "1.0.0",
+      "tags": ["code-quality", "validation", "testing", "quality", "process"],
+      "content": "Implement continuous validation as core workflow: Prompt → Generate → Validate → Refine. Use multi-faceted validation: automated testing, manual state inspection, direct application interaction. Leverage AI to generate tailored validation plans and test checklists. Never skip validation to maintain quality at speed.",
+      "metadata": {
+        "category": "code-quality",
+        "priority": 10,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "avoid_vibe_coding",
+      "version": "1.0.0",
+      "tags": ["code-quality", "discipline", "quality", "enterprise", "validation"],
+      "content": "Avoid 'vibe coding' (high-level descriptions with minimal scrutiny) for enterprise systems. Use disciplined AI-assisted coding: iterative process with well-defined steps, continuous validation, and refinement. Never commit code you don't fully understand. Focus on higher-order tasks: business context, architectural trade-offs, correctness verification.",
+      "metadata": {
+        "category": "code-quality",
+        "priority": 10,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "zero_tolerance_quality",
+      "version": "1.0.0",
+      "tags": ["code-quality", "standards", "linting", "compilation", "validation"],
+      "content": "Maintain zero tolerance for linting errors, compilation failures, and basic quality issues. Implement automated quality checks in development workflow. All code must pass quality gates before integration.",
+      "metadata": {
+        "category": "code-quality",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

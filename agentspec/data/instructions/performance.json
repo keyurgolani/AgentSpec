@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "performance_optimization",
+      "version": "1.0.0",
+      "tags": ["performance", "optimization", "caching", "efficiency"],
+      "content": "Implement caching strategies, optimize database queries, use lazy loading, and monitor performance metrics. Profile code to identify bottlenecks.",
+      "metadata": {
+        "category": "performance",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "code_refactoring",
+      "version": "1.0.0",
+      "tags": ["performance", "refactoring", "code-smells", "maintainability"],
+      "content": "Analyze codebases for performance-impacting code smells: duplicated logic, overly complex functions, inefficient algorithms. Implement systematic refactoring to improve code structure, readability, and performance without changing external behavior.",
+      "metadata": {
+        "category": "performance",
+        "priority": 7,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "performance_profiling",
+      "version": "1.0.0",
+      "tags": ["performance", "profiling", "bottlenecks", "analysis"],
+      "content": "Use performance profiling tools to identify bottlenecks: slow database queries, computationally expensive algorithms, memory leaks. Integrate static analysis with dynamic profiling for comprehensive performance assessment.",
+      "metadata": {
+        "category": "performance",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "legacy_modernization",
+      "version": "1.0.0",
+      "tags": ["performance", "legacy", "modernization", "migration"],
+      "content": "Modernize legacy systems for improved performance and maintainability. Plan systematic migration from older technologies to modern alternatives while maintaining business functionality. Requires comprehensive testing and validation throughout the process.",
+      "metadata": {
+        "category": "performance",
+        "priority": 6,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

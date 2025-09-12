@@ -1,0 +1,82 @@
+{
+  "instructions": [
+    {
+      "id": "clarity_context_constraints",
+      "version": "1.0.0",
+      "tags": ["prompt-optimization", "clarity", "context", "constraints", "technical"],
+      "content": "Foundation of effective prompting: Clarity (precise verbs and terminology), Context (programming language, frameworks, libraries, existing patterns), Constraints (performance expectations, security requirements, coding standards). Example: 'Write a Python function to check if a number is prime, optimized for numbers up to 10,000' vs 'Write a function to check prime numbers'.",
+      "metadata": {
+        "category": "prompt-optimization",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "chain_of_thought_prompting",
+      "version": "1.0.0",
+      "tags": ["prompt-optimization", "reasoning", "logic", "debugging", "technical"],
+      "content": "Instruct the model to explain its reasoning process before generating code. Example: 'Explain the logic for implementing a secure password reset flow step-by-step. Then, provide the Node.js code for the token generation part.' This creates a 'test plan' before code generation, ensuring alignment with goals and providing debugging rationale.",
+      "metadata": {
+        "category": "prompt-optimization",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "persona_based_prompting",
+      "version": "1.0.0",
+      "tags": ["prompt-optimization", "persona", "expertise", "quality", "technical"],
+      "content": "Assign specific roles to influence output style and quality. Examples: 'Act as a senior cybersecurity engineer. Review the following code snippet for potential security vulnerabilities and provide secure alternatives.' or 'Act as a senior frontend developer specializing in accessibility.' This primes the model to respond from expert perspective.",
+      "metadata": {
+        "category": "prompt-optimization",
+        "priority": 7,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "decomposition_prompting",
+      "version": "1.0.0",
+      "tags": ["prompt-optimization", "decomposition", "modularity", "clarity", "technical"],
+      "content": "Break large tasks into smaller, manageable prompts. Use function-by-function approach ('Create a function parse_csv(file_path) that reads a CSV and returns a list of dictionaries') or step-by-step instructions ('First, import libraries. Second, set up database connection. Third, create route to add user.').",
+      "metadata": {
+        "category": "prompt-optimization",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "skeleton_template_priming",
+      "version": "1.0.0",
+      "tags": ["prompt-optimization", "templates", "structure", "efficiency", "technical"],
+      "content": "Provide template or boilerplate structure and ask AI to fill implementation details. Example: 'Here is a React component skeleton with props defined. Implement the render method to display the user's profile information.' This provides clear structure and reduces ambiguity.",
+      "metadata": {
+        "category": "prompt-optimization",
+        "priority": 7,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "iterative_refinement",
+      "version": "1.0.0",
+      "tags": ["prompt-optimization", "refinement", "iteration", "improvement", "technical"],
+      "content": "Build upon initial minimal code with successive prompts. Examples: 'Take the basic Flask app code and add a new route /users that returns a JSON list of users' or 'Refactor the provided Java code to comply with Google's Java Style Guide, focusing on variable naming and line length.'",
+      "metadata": {
+        "category": "prompt-optimization",
+        "priority": 7,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

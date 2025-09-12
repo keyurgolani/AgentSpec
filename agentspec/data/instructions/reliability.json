@@ -1,0 +1,17 @@
+{
+  "instructions": [
+    {
+      "id": "error_handling",
+      "version": "1.0.0",
+      "tags": ["error-handling", "reliability", "logging", "debugging"],
+      "content": "Implement comprehensive error handling with structured logging, user-friendly messages, and graceful degradation. Use appropriate log levels.",
+      "metadata": {
+        "category": "reliability",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

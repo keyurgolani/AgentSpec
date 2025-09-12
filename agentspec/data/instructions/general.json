@@ -1,0 +1,108 @@
+{
+  "instructions": [
+    {
+      "id": "context_management",
+      "version": "1.0.0",
+      "tags": ["general", "persistence", "resume", "tracking"],
+      "content": "For each task create/update a markdown file (`task_contexts/<task_name>.md`) that records: objective, context gathered, changes made, and next steps. Load this file at task start and resume from where it left off.",
+      "metadata": {
+        "category": "general",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "project_context",
+      "version": "1.0.0",
+      "tags": ["general", "persistence", "commands", "debugging"],
+      "content": "Maintain `project_context.md` that records: failed commands and alternatives, temporary files and purposes, lessons learned. Reference this file to avoid repeating mistakes.",
+      "metadata": {
+        "category": "general",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "thorough_analysis",
+      "version": "1.0.0",
+      "tags": ["general", "analysis", "debugging", "investigation"],
+      "content": "Begin every task with thorough code analysis, identify exact locations to fix, and define crisp exit criteria. Perform comprehensive code review before making changes.",
+      "metadata": {
+        "category": "general",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "no_error_policy",
+      "version": "1.0.0",
+      "tags": ["general", "quality", "testing", "integration"],
+      "content": "After every task, ensure zero linting, compilation, build or deployment errors. Fix all issues before marking task complete. Verify backend-frontend integration consistency.",
+      "metadata": {
+        "category": "general",
+        "priority": 10,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "runtime_validation",
+      "version": "1.0.0",
+      "tags": ["general", "testing", "browser", "validation"],
+      "content": "Use browser console logs and automated testing to confirm application loads without errors and all interactions work. Iterate until zero errors remain.",
+      "metadata": {
+        "category": "general",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "modular_architecture",
+      "version": "1.0.0",
+      "tags": ["architecture", "modularity", "maintainability", "refactoring"],
+      "content": "Break large files into single-responsibility modules, eliminate duplicate code, remove dead code. Ensure each file has one clear conceptual responsibility.",
+      "metadata": {
+        "category": "general",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "linting_standards",
+      "version": "1.0.0",
+      "tags": ["quality", "linting", "standards", "javascript", "python", "general"],
+      "content": "Resolve all lint warnings across entire repository. Treat all warnings as errors. Never skip tests or bypass quality guardrails.",
+      "metadata": {
+        "category": "general",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "documentation_tracking",
+      "version": "1.0.0",
+      "tags": ["documentation", "design", "tracking", "maintenance"],
+      "content": "Log every change that deviates from design, update design docs, record temporary files in context. Keep documentation synchronized with implementation.",
+      "metadata": {
+        "category": "general",
+        "priority": 6,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

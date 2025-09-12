@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "systematic_debugging",
+      "version": "1.0.0",
+      "tags": ["debugging", "troubleshooting", "methodology", "analysis"],
+      "content": "Use systematic debugging approaches: reproduce the issue consistently, isolate the problem area, form hypotheses, test incrementally. Document findings and solutions for future reference.",
+      "metadata": {
+        "category": "debugging",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "interactive_debugging_sessions",
+      "version": "1.0.0",
+      "tags": ["debugging", "interactive", "troubleshooting", "collaboration"],
+      "content": "Conduct effective debugging sessions by providing comprehensive context: relevant code, error messages, observed behavior, and steps to reproduce. Use structured problem description to accelerate diagnosis and resolution.",
+      "metadata": {
+        "category": "debugging",
+        "priority": 6,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "error_handling_patterns",
+      "version": "1.0.0",
+      "tags": ["debugging", "error-handling", "resilience", "patterns"],
+      "content": "Implement robust error handling with proper exception management, graceful degradation, and meaningful error messages. Use circuit breakers and retry mechanisms for external dependencies.",
+      "metadata": {
+        "category": "debugging",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "logging_strategies",
+      "version": "1.0.0",
+      "tags": ["debugging", "logging", "observability", "tracing"],
+      "content": "Implement structured logging with appropriate log levels, correlation IDs, and contextual information. Use distributed tracing for microservices debugging and performance analysis.",
+      "metadata": {
+        "category": "debugging",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

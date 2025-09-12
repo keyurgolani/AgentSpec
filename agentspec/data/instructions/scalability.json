@@ -1,0 +1,69 @@
+{
+  "instructions": [
+    {
+      "id": "horizontal_scaling",
+      "version": "1.0.0",
+      "tags": ["scalability", "horizontal", "load-balancing", "distribution"],
+      "content": "Design for horizontal scaling with stateless services, load balancing, and distributed architecture. Implement auto-scaling based on metrics and demand patterns.",
+      "metadata": {
+        "category": "scalability",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "caching_strategies",
+      "version": "1.0.0",
+      "tags": ["scalability", "caching", "performance", "redis"],
+      "content": "Implement multi-level caching strategies with appropriate cache invalidation, TTL settings, and cache warming. Use CDNs, application caches, and database query caches effectively.",
+      "metadata": {
+        "category": "scalability",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "database_scaling",
+      "version": "1.0.0",
+      "tags": ["scalability", "database", "sharding", "replication"],
+      "content": "Implement database scaling with read replicas, sharding, and partitioning strategies. Use connection pooling and implement database-specific optimization techniques.",
+      "metadata": {
+        "category": "scalability",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "async_processing",
+      "version": "1.0.0",
+      "tags": ["scalability", "async", "queues", "background"],
+      "content": "Implement asynchronous processing with message queues, background jobs, and event-driven architecture. Use appropriate queue systems (Redis, RabbitMQ, Kafka) for different use cases.",
+      "metadata": {
+        "category": "scalability",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "resource_optimization",
+      "version": "1.0.0",
+      "tags": ["scalability", "resources", "optimization", "efficiency"],
+      "content": "Optimize resource usage with efficient algorithms, memory management, and CPU utilization. Profile applications to identify bottlenecks and implement resource pooling where appropriate.",
+      "metadata": {
+        "category": "scalability",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

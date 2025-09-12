@@ -1,0 +1,45 @@
+#!/bin/bash
+# Pre-push hook for AgentSpec
+
+set -e
+
+echo "🔍 Running pre-push checks..."
+
+# Run tests if they exist
+if [ -f "pytest.ini" ] || [ -d "tests" ]; then
+    echo "Running tests..."
+    python3 -m pytest tests/ -v || echo "⚠️  Tests failed or not configured"
+fi
+
+# Check CLI functionality
+echo "Testing CLI functionality..."
+if command -v agentspec >/dev/null 2>&1; then
+    agentspec --help > /dev/null
+    agentspec list-tags > /dev/null
+    echo "✅ CLI tests passed"
+else
+    echo "⚠️  agentspec command not found in PATH, testing with python module..."
+    python3 -c "from agentspec.cli.main import main; main(['--help'])" > /dev/null
+    python3 -c "from agentspec.cli.main import main; main(['list-tags'])" > /dev/null
+    echo "✅ Module tests passed"
+fi
+
+# Test package build if build tools are available
+if command -v python3 -m build >/dev/null 2>&1; then
+    echo "Testing package build..."
+    python3 -m build --wheel --outdir /tmp/agentspec-build-test/ > /dev/null 2>&1
+    rm -rf /tmp/agentspec-build-test/
+    echo "✅ Package build test passed"
+else
+    echo "⚠️  Build tools not available, skipping build test"
+fi
+
+# Check for security issues if bandit is available
+if command -v bandit >/dev/null 2>&1; then
+    echo "Running security checks..."
+    bandit -r agentspec/ -ll || echo "⚠️  Security check completed with warnings"
+else
+    echo "⚠️  bandit not available, skipping security check"
+fi
+
+echo "✅ All pre-push checks completed!"

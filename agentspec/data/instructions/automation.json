@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "task_automation",
+      "version": "1.0.0",
+      "tags": ["automation", "scripting", "efficiency", "tooling"],
+      "content": "Automate repetitive tasks with appropriate scripting languages and tools. Create maintainable automation scripts with proper error handling, logging, and documentation.",
+      "metadata": {
+        "category": "automation",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "workflow_automation",
+      "version": "1.0.0",
+      "tags": ["automation", "workflow", "ci-cd", "integration"],
+      "content": "Implement workflow automation for development processes: automated testing, code quality checks, deployment pipelines, and notification systems. Use tools like GitHub Actions, Jenkins, or GitLab CI.",
+      "metadata": {
+        "category": "automation",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "infrastructure_automation",
+      "version": "1.0.0",
+      "tags": ["automation", "infrastructure", "iac", "provisioning"],
+      "content": "Use Infrastructure as Code (IaC) for automated infrastructure provisioning and management. Implement tools like Terraform, CloudFormation, or Pulumi for consistent, repeatable deployments.",
+      "metadata": {
+        "category": "automation",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "testing_automation",
+      "version": "1.0.0",
+      "tags": ["automation", "testing", "quality", "validation"],
+      "content": "Implement comprehensive test automation with unit, integration, and end-to-end tests. Use appropriate testing frameworks and maintain test suites with proper coverage and reliability.",
+      "metadata": {
+        "category": "automation",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

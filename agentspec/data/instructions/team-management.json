@@ -1,0 +1,82 @@
+{
+  "instructions": [
+    {
+      "id": "realistic_productivity_expectations",
+      "version": "1.0.0",
+      "tags": ["team-management", "productivity", "expectations", "devex", "organizational"],
+      "content": "Set realistic productivity expectations: enterprise customers report modest 10% gains, not dramatic increases. Focus on holistic benefits: 75% higher job satisfaction due to automating mundane tasks (boilerplate, tests, API integration), freeing cognitive capacity for creative problem-solving, architectural design, and innovation. Improved DevEx contributes to talent retention.",
+      "metadata": {
+        "category": "team-management",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "crawl_walk_run_strategy",
+      "version": "1.0.0",
+      "tags": ["team-management", "strategy", "incremental", "culture", "adoption"],
+      "content": "Implement incremental adoption strategy: Crawl (introduce AI tools, encourage experimentation with tightly scoped use cases), Walk (socialize wins, share successful prompt patterns and lessons learned, build organizational AI literacy), Run (tackle larger transformative initiatives once critical mass of developers achieves proficiency). Avoid top-down ambitious initiatives without foundational skills.",
+      "metadata": {
+        "category": "team-management",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "never_commit_unknown_code",
+      "version": "1.0.0",
+      "tags": ["team-management", "responsibility", "quality", "discipline", "culture"],
+      "content": "Establish cultural principle: Never commit code you do not fully understand. Developer who commits code is ultimately responsible for behavior, quality, and security regardless of human or AI authorship. Draw firm line between 'vibe coding' (useful for prototyping) and professional software engineering (requires full understanding and validation).",
+      "metadata": {
+        "category": "team-management",
+        "priority": 10,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "devex_team_leadership",
+      "version": "1.0.0",
+      "tags": ["team-management", "devex", "platform-engineering", "leadership", "organizational"],
+      "content": "Empower Developer Experience (DevEx) or Platform Engineering team to lead AI adoption. They are best positioned to evaluate and select AI tools, configure them securely, integrate into existing SDLC, develop standardized prompt libraries, and implement governance guardrails. Organizations investing in DevEx teams for AI transformation will be better equipped to succeed.",
+      "metadata": {
+        "category": "team-management",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "junior_developer_mentorship",
+      "version": "1.0.0",
+      "tags": ["team-management", "mentorship", "junior-developers", "learning", "training"],
+      "content": "Implement structured mentorship for junior developers using AI. AI can be powerful learning accelerator when used as Socratic mentor explaining concepts and justifying suggestions. However, over-reliance as black-box answer generator risks stunting fundamental problem-solving skills. Establish pair-programming programs teaching critical and effective AI use for growth, not dependence.",
+      "metadata": {
+        "category": "team-management",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "security_upskilling_investment",
+      "version": "1.0.0",
+      "tags": ["team-management", "security", "training", "upskilling", "education"],
+      "content": "Invest strategically in upskilling developers on AI security. Training should cover advanced prompt writing, OWASP LLM Top 10 security risks, bias mitigation techniques, and ethical AI considerations. Peer learning and collaborative exploration are key drivers for maximizing AI value while maintaining security standards.",
+      "metadata": {
+        "category": "team-management",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}

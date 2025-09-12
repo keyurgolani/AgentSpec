@@ -1,0 +1,56 @@
+{
+  "instructions": [
+    {
+      "id": "human_in_the_loop_architect",
+      "version": "1.0.0",
+      "tags": ["ai-collaboration", "collaboration", "architecture", "decision-making", "human-ai"],
+      "content": "Maintain the developer as architect, not just operator. Use AI as a sophisticated tool for comparison and refinement, but retain control of decision-making process. Apply creative problem-solving skills to unique project requirements. Treat AI as a 'peer programmer' whose work must always be subject to review and verification.",
+      "metadata": {
+        "category": "ai-collaboration",
+        "priority": 10,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "rich_scratchpad_context",
+      "version": "1.0.0",
+      "tags": ["ai-collaboration", "context", "workflow", "documentation", "session-management"],
+      "content": "Maintain a dedicated 'rich scratchpad' document parallel to development. Use it for crafting complex prompts, recording follow-up questions, logging issues and solutions, and storing essential project context (goals, architecture, environment details). Use this to quickly re-prime AI sessions and prevent context drift.",
+      "metadata": {
+        "category": "ai-collaboration",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "peer_programmer_model",
+      "version": "1.0.0",
+      "tags": ["ai-collaboration", "partnership", "review", "responsibility", "human-ai"],
+      "content": "Treat AI as a peer programmer whose contributions require review and validation. Maintain ultimate responsibility for all code regardless of authorship. Establish clear boundaries between AI assistance and human decision-making authority.",
+      "metadata": {
+        "category": "ai-collaboration",
+        "priority": 9,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "context_preservation",
+      "version": "1.0.0",
+      "tags": ["ai-collaboration", "context", "session-management", "efficiency", "workflow"],
+      "content": "Implement systematic context preservation across AI sessions. Document project goals, architectural decisions, coding standards, and current state. Use structured templates to quickly restore context when starting new AI interactions.",
+      "metadata": {
+        "category": "ai-collaboration",
+        "priority": 8,
+        "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]
+}
