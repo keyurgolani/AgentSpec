@@ -19,23 +19,15 @@ from agentspec.core.context_detector import (
     ProjectType,
     TechnologyStack,
 )
-from agentspec.core.instruction_database import (
+from agentspec.core.instruction import (
     Condition,
     Instruction,
-    InstructionDatabase,
     InstructionMetadata,
     LanguageVariant,
     Parameter,
 )
+from agentspec.core.instruction_database import InstructionDatabase
 from agentspec.core.spec_generator import SpecConfig, SpecGenerator
-from agentspec.core.task_context import (
-    TaskContext,
-    TaskContextManager,
-    TaskDefinition,
-    TaskMetadata,
-    TaskPriority,
-    TaskStatus,
-)
 from agentspec.core.template_manager import (
     Template,
     TemplateCondition,
@@ -163,25 +155,6 @@ def sample_project_context():
 
 
 @pytest.fixture
-def sample_task_context():
-    """Create a sample task context for testing."""
-    metadata = TaskMetadata(
-        category="development",
-        priority=TaskPriority.HIGH,
-        estimated_duration=120,
-        tags=["frontend", "testing"],
-    )
-
-    return TaskContext(
-        id="test_task_123",
-        title="Implement user authentication",
-        description="Add login and registration functionality",
-        status=TaskStatus.PENDING,
-        metadata=metadata,
-    )
-
-
-@pytest.fixture
 def mock_instruction_files(temp_dir):
     """Create mock instruction files for testing."""
     instructions_dir = temp_dir / "instructions"
@@ -212,11 +185,187 @@ def mock_instruction_files(temp_dir):
         ]
     }
 
+    # Add spec workflow instructions for testing
+    spec_workflow_instructions = {
+        "instructions": [
+            {
+                "id": "plan_and_reflect",
+                "version": "1.0.0",
+                "tags": ["spec", "workflow", "planning", "reflection", "methodology"],
+                "content": "Plan thoroughly before every tool call and reflect on the outcome after. Always think through what you're trying to accomplish, what tools you need, and what the expected result should be. After each action, evaluate whether it achieved the intended goal and adjust your approach if needed.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 10,
+                    "author": "AgentSpec",
+                    "created_at": "2024-12-15T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "use_tools_dont_guess",
+                "version": "1.0.0",
+                "tags": ["spec", "workflow", "verification", "accuracy", "tools"],
+                "content": "Use your tools, don't guess. If you're unsure about code or files, open them - do not hallucinate. Always verify information by reading files, checking directory structures, or running commands rather than making assumptions about what exists or how things work.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 10,
+                    "author": "AgentSpec",
+                    "created_at": "2024-12-15T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "persist_until_complete",
+                "version": "1.0.0",
+                "tags": [
+                    "spec",
+                    "workflow",
+                    "persistence",
+                    "completion",
+                    "thoroughness",
+                ],
+                "content": "Persist in your work. Keep going until the job is completely solved before ending your turn. Don't stop at partial solutions or leave tasks half-finished. Ensure all requirements are met, all tests pass, and the implementation is fully functional before considering the work done.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 10,
+                    "author": "AgentSpec",
+                    "created_at": "2024-12-15T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "context_management",
+                "version": "1.0.0",
+                "tags": ["spec", "workflow", "persistence", "resume", "tracking"],
+                "content": "Document progress and maintain clear records of development steps, decisions made, and next actions for each development task.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 9,
+                    "author": "AgentSpec",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "thorough_analysis",
+                "version": "1.0.0",
+                "tags": ["spec", "workflow", "analysis", "debugging", "investigation"],
+                "content": "Begin every task with thorough code analysis, identify exact locations to fix, and define crisp exit criteria. Perform comprehensive code review before making changes.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 9,
+                    "author": "AgentSpec",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "no_error_policy",
+                "version": "1.0.0",
+                "tags": ["spec", "workflow", "quality", "testing", "integration"],
+                "content": "After every task, ensure zero linting, compilation, build or deployment errors. Fix all issues before marking task complete. Verify backend-frontend integration consistency.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 10,
+                    "author": "AgentSpec",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "incremental_development",
+                "version": "1.0.0",
+                "tags": [
+                    "spec",
+                    "workflow",
+                    "development",
+                    "incremental",
+                    "validation",
+                ],
+                "content": "Implement features incrementally with frequent validation. Make small, focused changes that can be easily reviewed and rolled back. Validate each step before proceeding to the next.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 10,
+                    "author": "AgentSpec",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "error_recovery",
+                "version": "1.0.0",
+                "tags": [
+                    "spec",
+                    "workflow",
+                    "error-handling",
+                    "recovery",
+                    "resilience",
+                ],
+                "content": "When errors occur, analyze the root cause, implement proper fixes, and add safeguards to prevent recurrence. Document error patterns and solutions for future reference.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 8,
+                    "author": "AgentSpec",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "continuous_validation_loop",
+                "version": "1.0.0",
+                "tags": ["spec", "workflow", "validation", "testing", "quality"],
+                "content": "Implement continuous validation as core workflow: Prompt → Generate → Validate → Refine. Use multi-faceted validation: automated testing, manual state inspection, direct application interaction. Leverage AI to generate tailored validation plans and test checklists. Never skip validation to maintain quality at speed.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 10,
+                    "author": "Research Integration",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "avoid_vibe_coding",
+                "version": "1.0.0",
+                "tags": ["spec", "workflow", "discipline", "quality", "validation"],
+                "content": "Avoid 'vibe coding' (high-level descriptions with minimal scrutiny) for enterprise systems. Use disciplined AI-assisted coding: iterative process with well-defined steps, continuous validation, and refinement. Never commit code you don't fully understand. Focus on higher-order tasks: business context, architectural trade-offs, correctness verification.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 10,
+                    "author": "Research Integration",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+            {
+                "id": "systematic_debugging",
+                "version": "1.0.0",
+                "tags": [
+                    "spec",
+                    "workflow",
+                    "debugging",
+                    "troubleshooting",
+                    "methodology",
+                ],
+                "content": "Use systematic debugging approaches: reproduce the issue consistently, isolate the problem area, form hypotheses, test incrementally. Document findings and solutions for future reference.",
+                "metadata": {
+                    "category": "spec-workflow",
+                    "priority": 8,
+                    "author": "AgentSpec",
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-12-15T00:00:00Z",
+                },
+            },
+        ]
+    }
+
     with open(instructions_dir / "general.json", "w") as f:
         json.dump(general_instructions, f)
 
     with open(instructions_dir / "testing.json", "w") as f:
         json.dump(testing_instructions, f)
+
+    with open(instructions_dir / "spec-workflow.json", "w") as f:
+        json.dump(spec_workflow_instructions, f)
 
     return instructions_dir
 
@@ -248,7 +397,7 @@ def mock_template_files(temp_dir):
         "metadata": {"category": "web", "complexity": "intermediate"},
     }
 
-    with open(templates_dir / "react-app.json", "w") as f:
+    with open(templates_dir / "react_app.json", "w") as f:
         json.dump(react_template, f)
 
     return templates_dir
@@ -346,12 +495,6 @@ def spec_generator(instruction_database, template_manager, context_detector):
     )
 
 
-@pytest.fixture
-def task_context_manager(temp_dir):
-    """Create a TaskContextManager instance with temporary directory."""
-    return TaskContextManager(contexts_path=temp_dir / "task_contexts")
-
-
 # Mock external dependencies
 @pytest.fixture
 def mock_git_repo():
@@ -368,7 +511,6 @@ def mock_file_system():
     with patch("pathlib.Path.exists") as mock_exists, patch(
         "pathlib.Path.is_dir"
     ) as mock_is_dir, patch("os.walk") as mock_walk:
-
         mock_exists.return_value = True
         mock_is_dir.return_value = True
         mock_walk.return_value = [

@@ -36,7 +36,6 @@ def sample_instruction_data():
             "author": "test_author",
             "created_at": "2023-01-01T00:00:00Z",
             "updated_at": "2023-06-01T00:00:00Z",
-            "deprecated": False,
             "default_language": "en",
         },
         "language_variants": {
@@ -111,7 +110,6 @@ def sample_template_data():
             "author": "template_author",
             "created_at": "2023-01-01T00:00:00Z",
             "updated_at": "2023-06-01T00:00:00Z",
-            "deprecated": False,
             "tags": ["popular", "maintained", "production-ready"],
         },
     }
@@ -436,7 +434,6 @@ def mock_validation_errors():
 def mock_validation_warnings():
     """Mock validation warnings for testing."""
     return [
-        "Deprecated instruction used: old_instruction_id",
         "Potential instruction conflict detected",
         "Template parameter not used: unused_param",
         "Low confidence project type detection",

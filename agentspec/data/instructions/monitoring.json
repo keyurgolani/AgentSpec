@@ -1,29 +1,16 @@
 {
   "instructions": [
     {
-      "id": "comprehensive_monitoring",
-      "version": "1.0.0",
-      "tags": ["monitoring", "observability", "metrics", "alerting"],
-      "content": "Implement comprehensive monitoring with metrics, logs, and traces. Set up meaningful alerts for critical failures and performance degradation. Use SLIs and SLOs to define service reliability targets.",
+      "id": "monitoring_observability",
+      "version": "1.3.0",
+      "tags": ["monitoring", "observability", "metrics", "alerting", "devops", "logging", "sli", "slo", "error-handling", "reliability", "anomaly-detection"],
+      "content": "Implement comprehensive monitoring and observability with metrics, logs, and traces across all system components. Set up meaningful alerts for critical failures and performance degradation. Use SLIs (Service Level Indicators) and SLOs (Service Level Objectives) to define service reliability targets. Transform monitoring from reactive alerting to proactive observability using advanced anomaly detection in logs, traces, and metrics to identify subtle deviations indicating impending issues. Automate root cause analysis by correlating data from multiple sources. Implement structured logging with appropriate log levels, correlation IDs, and contextual information. Use distributed tracing for microservices debugging and performance analysis. Include comprehensive error handling with graceful degradation, circuit breakers, retry mechanisms for external dependencies, and meaningful error messages with recovery suggestions. Include application performance monitoring, infrastructure monitoring, and business metrics tracking.",
       "metadata": {
         "category": "monitoring",
-        "priority": 8,
-        "author": "AgentSpec",
+        "priority": 9,
+        "author": "AgentSpec Consolidated",
         "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
-      }
-    },
-    {
-      "id": "intelligent_anomaly_detection",
-      "version": "1.0.0",
-      "tags": ["monitoring", "anomaly-detection", "proactive", "analysis"],
-      "content": "Transform monitoring from reactive alerting to proactive observability. Use advanced anomaly detection in logs, traces, and metrics to identify subtle deviations indicating impending issues. Automate root cause analysis by correlating data from multiple sources.",
-      "metadata": {
-        "category": "monitoring",
-        "priority": 8,
-        "author": "Research Integration",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
+        "updated_at": "2024-12-15T00:00:00Z"
       }
     },
     {

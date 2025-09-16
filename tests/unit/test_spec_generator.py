@@ -67,7 +67,8 @@ class TestSpecGenerator:
 
         assert isinstance(spec, GeneratedSpec)
         assert spec.content
-        assert len(spec.instructions_used) == len(instruction_ids)
+        # Should include selected instructions plus always-include instructions
+        assert len(spec.instructions_used) >= len(instruction_ids)
         assert all(inst_id in spec.instructions_used for inst_id in instruction_ids)
 
     def test_generate_spec_with_template(self, spec_generator):
@@ -161,11 +162,11 @@ class TestSpecGenerator:
         """Test validation of valid specification."""
         spec = GeneratedSpec(
             content="""# AgentSpec
-            
+
 ## IMPLEMENTATION FRAMEWORK
 
-### Pre-Task Checklist
-- [ ] Load existing task context
+### Pre-Development Checklist
+- [ ] Load existing project context
 
 ## QUALITY GATES
 
@@ -363,7 +364,7 @@ class TestSpecGenerator:
 
         assert isinstance(framework, list)
         assert any("IMPLEMENTATION FRAMEWORK" in line for line in framework)
-        assert any("Pre-Task Checklist" in line for line in framework)
+        assert any("Pre-Development Checklist" in line for line in framework)
         assert any("QUALITY GATES" in line for line in framework)
 
     def test_get_metadata_section(self, spec_generator, sample_project_context):
@@ -383,6 +384,70 @@ class TestSpecGenerator:
         assert any("SPECIFICATION METADATA" in line for line in metadata)
         assert any("Generation Date" in line for line in metadata)
         assert any("Instructions Used" in line for line in metadata)
+
+    def test_always_include_instructions(self, spec_generator):
+        """Test that always-include instructions are automatically included."""
+        # Mock the config manager to return our spec workflow instructions
+        with patch.object(
+            spec_generator.config_manager,
+            "get",
+            return_value=[
+                "plan_and_reflect",
+                "use_tools_dont_guess",
+                "persist_until_complete",
+                "context_management",
+                "quality_standards",
+                "incremental_development",
+                "continuous_validation_loop",
+                "avoid_vibe_coding",
+                "ai_code_understanding_requirement",
+                "ai_code_generation_rules",
+                "ai_error_handling_patterns",
+            ],
+        ):
+            # Create a config with no selected tags or instructions
+            config = SpecConfig()
+
+            # Get instructions - should include the always-include ones
+            instructions = spec_generator._get_instructions_for_config(config)
+
+            instruction_ids = [inst.id for inst in instructions]
+
+            # Verify that our spec workflow instructions are included
+            expected_instructions = [
+                "plan_and_reflect",
+                "use_tools_dont_guess",
+                "persist_until_complete",
+                "context_management",
+                "incremental_development",
+                "continuous_validation_loop",
+                "avoid_vibe_coding",
+            ]
+            for inst_id in expected_instructions:
+                assert (
+                    inst_id in instruction_ids
+                ), f"Missing always-include instruction: {inst_id}"
+
+    def test_always_include_not_excluded(self, spec_generator):
+        """Test that always-include instructions cannot be excluded."""
+        # Mock the config manager to return our spec workflow instructions
+        with patch.object(
+            spec_generator.config_manager,
+            "get",
+            return_value=["plan_and_reflect", "use_tools_dont_guess"],
+        ):
+            # Create a config that tries to exclude an always-include instruction
+            config = SpecConfig(
+                excluded_instructions=["plan_and_reflect", "some_other_instruction"]
+            )
+
+            # Get instructions - always-include should still be present
+            instructions = spec_generator._get_instructions_for_config(config)
+
+            instruction_ids = [inst.id for inst in instructions]
+
+            # Verify that the always-include instruction is still present despite being in excluded list
+            assert "plan_and_reflect" in instruction_ids
 
 
 class TestSpecConfig:

@@ -4,6 +4,7 @@ File utilities for AgentSpec.
 Provides file operations, path handling, and file system utilities.
 """
 
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -132,3 +133,21 @@ class FileUtils:
     def normalize_path(path: Union[str, Path]) -> Path:
         """Normalize path (resolve symlinks, relative paths, etc.)."""
         return Path(path).resolve()
+
+
+def get_file_hash(path: Union[str, Path], algorithm: str = "sha256") -> str:
+    """
+    Calculate hash of a file.
+
+    Args:
+        path: Path to the file
+        algorithm: Hash algorithm to use (default: sha256)
+
+    Returns:
+        Hexadecimal hash string
+    """
+    hash_obj = hashlib.new(algorithm)
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_obj.update(chunk)
+    return hash_obj.hexdigest()

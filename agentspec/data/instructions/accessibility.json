@@ -1,10 +1,10 @@
 {
   "instructions": [
     {
-      "id": "wcag_compliance",
-      "version": "1.0.0",
-      "tags": ["accessibility", "wcag", "compliance", "inclusive-design"],
-      "content": "Ensure WCAG 2.1 AA compliance with proper ARIA labels, keyboard navigation, color contrast ratios, and screen reader compatibility. Implement semantic HTML and meaningful alt text for images.",
+      "id": "accessibility_compliance",
+      "version": "1.1.0",
+      "tags": ["accessibility", "wcag", "compliance", "inclusive-design", "frontend", "ui"],
+      "content": "Ensure WCAG 2.1 AA compliance with proper ARIA labels, keyboard navigation, color contrast ratios, and screen reader compatibility. Implement semantic HTML, meaningful alt text for images, and ensure all interactive elements are keyboard accessible without mouse dependency. Design for diverse abilities, technologies, and contexts with touch-friendly interfaces and proper viewport settings.",
       "metadata": {
         "category": "accessibility",
         "priority": 8,

@@ -11,7 +11,6 @@ import pytest
 from agentspec.core.context_detector import ContextDetector
 from agentspec.core.instruction_database import InstructionDatabase
 from agentspec.core.spec_generator import SpecConfig, SpecGenerator
-from agentspec.core.task_context import TaskContextManager
 from agentspec.core.template_manager import TemplateManager
 
 
@@ -433,109 +432,6 @@ class TestSpecGeneratorIntegration:
         # Parameters should be substituted
         assert "MyAwesomeApp" in spec.content
         assert "Vue" in spec.content
-
-
-class TestTaskContextIntegration:
-    """Integration tests for TaskContext with other components."""
-
-    def test_task_context_with_spec_generator(self, temp_dir):
-        """Test TaskContext integration with SpecGenerator."""
-        task_manager = TaskContextManager(contexts_path=temp_dir / "tasks")
-
-        # Create task context
-        from agentspec.core.task_context import TaskDefinition, TaskPriority
-
-        task_def = TaskDefinition(
-            title="Generate Project Specification",
-            description="Create comprehensive spec for React project",
-            category="specification",
-            priority=TaskPriority.HIGH,
-            tags=["spec", "react", "frontend"],
-        )
-
-        task_context = task_manager.create_task_context(task_def)
-
-        # Verify task was created and saved
-        assert task_context.id
-        assert task_context.title == "Generate Project Specification"
-
-        # Load task context
-        loaded_context = task_manager.load_task_context(task_context.id)
-        assert loaded_context is not None
-        assert loaded_context.title == task_context.title
-
-    def test_task_context_dependency_management(self, temp_dir):
-        """Test task context dependency management integration."""
-        task_manager = TaskContextManager(contexts_path=temp_dir / "tasks")
-
-        from agentspec.core.task_context import TaskDefinition, TaskDependency
-
-        # Create multiple tasks
-        task1_def = TaskDefinition(
-            title="Setup Project Structure",
-            description="Initialize project files and directories",
-            category="setup",
-        )
-
-        task2_def = TaskDefinition(
-            title="Install Dependencies",
-            description="Install required npm packages",
-            category="setup",
-        )
-
-        task1 = task_manager.create_task_context(task1_def)
-        task2 = task_manager.create_task_context(task2_def)
-
-        # Add dependency: task2 depends on task1
-        dependency = TaskDependency(
-            task_id=task1.id,
-            dependency_type="blocks",
-            description="Project structure must be set up first",
-        )
-
-        task_manager.add_task_dependency(task2.id, dependency)
-
-        # Test task ordering
-        ordered_ids = task_manager.get_task_order([task1.id, task2.id])
-
-        # task1 should come before task2
-        assert ordered_ids.index(task1.id) < ordered_ids.index(task2.id)
-
-    def test_task_context_visualization_integration(self, temp_dir):
-        """Test task context visualization integration."""
-        task_manager = TaskContextManager(contexts_path=temp_dir / "tasks")
-
-        from agentspec.core.task_context import TaskDefinition, TaskDependency
-
-        # Create task hierarchy
-        tasks = []
-        for i in range(3):
-            task_def = TaskDefinition(
-                title=f"Task {i+1}",
-                description=f"Description for task {i+1}",
-                category="test",
-            )
-            task = task_manager.create_task_context(task_def)
-            tasks.append(task)
-
-        # Add dependencies: task2 -> task1, task3 -> task2
-        dep1 = TaskDependency(task_id=tasks[0].id, dependency_type="blocks")
-        dep2 = TaskDependency(task_id=tasks[1].id, dependency_type="blocks")
-
-        task_manager.add_task_dependency(tasks[1].id, dep1)
-        task_manager.add_task_dependency(tasks[2].id, dep2)
-
-        # Generate task graph
-        task_ids = [task.id for task in tasks]
-        graph = task_manager.visualize_task_graph(task_ids)
-
-        assert len(graph.nodes) == 3
-        assert len(graph.edges) == 2
-
-        # Verify edges represent dependencies correctly
-        edge_pairs = [(edge[0], edge[1]) for edge in graph.edges]
-        assert (tasks[0].id, tasks[1].id) in edge_pairs
-        assert (tasks[1].id, tasks[2].id) in edge_pairs
 
 
 class TestCrossComponentValidation:

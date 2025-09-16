@@ -516,7 +516,7 @@ class TestTemplateLoadingIntegration:
             "metadata": {"category": "web", "complexity": "intermediate"},
         }
 
-        with open(templates_dir / "full-react-app.json", "w") as f:
+        with open(templates_dir / "full-react-frontend.json", "w") as f:
             json.dump(template_data, f, indent=2)
 
         # Initialize components

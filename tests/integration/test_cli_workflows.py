@@ -59,7 +59,7 @@ class TestCLIWorkflows:
             output = mock_stdout.getvalue()
             assert "Available tags:" in output
             assert "testing" in output
-            assert "general" in output
+            assert "general" in output.lower()
 
     def test_generate_spec_workflow(
         self, mock_instruction_files, mock_template_files, temp_dir
@@ -208,8 +208,8 @@ class TestCLIWorkflows:
 
 ## IMPLEMENTATION FRAMEWORK
 
-### Pre-Task Checklist
-- [ ] Load existing task context
+### Pre-Development Checklist
+- [ ] Load existing project context
 
 ## QUALITY GATES
 

@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Template system for quick project setup
 - Smart project analysis and context detection
 - Automated validation framework with quality gates
-- Task context management for resumable development
+- Project context management for resumable development
 - AI best practices integration with security guardrails
 - Documentation suite with getting started guide and API reference
 - Support for multiple development categories:
@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Template System**: Pre-built templates for common project types
 - **Smart Analysis**: Automatic project detection and context gathering
 - **Quality Enforcement**: Zero-tolerance policy for errors and warnings
-- **Resumable Development**: Task contexts preserve state across sessions
+- **Resumable Development**: Project contexts preserve state across sessions
 - **AI Integration**: Built-in best practices for AI-assisted development
 - **Security Guardrails**: Multi-layered protection against AI-generated vulnerabilities
 - **Modular Architecture**: Clean separation of concerns with extensible design
@@ -72,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Validation Tools
 - Project structure validation
-- Task context format validation
+- Project context format validation
 - Code quality checks (linting, testing, documentation)
 - Compliance reporting with actionable recommendations
 - Git hooks for pre-commit and pre-push validation

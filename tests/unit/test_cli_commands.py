@@ -310,7 +310,7 @@ class TestGenerateSpecCommand:
         mock_spec_generator = Mock()
         mock_spec = GeneratedSpec(content="# Test Spec", format="markdown")
         mock_spec.validation_result = ValidationResult(
-            False, ["Missing required section"], ["Deprecated instruction used"]
+            False, ["Missing required section"], ["Template parameter not used"]
         )
 
         mock_spec_generator.generate_spec.return_value = mock_spec
@@ -323,7 +323,7 @@ class TestGenerateSpecCommand:
         assert "Specification validation warnings:" in output
         assert "Missing required section" in output
         assert "Specification warnings:" in output
-        assert "Deprecated instruction used" in output
+        assert "Template parameter not used" in output
 
     def test_generate_spec_no_parameters(self, spec_generator):
         """Test spec generation with no parameters."""
@@ -435,7 +435,6 @@ class TestAnalyzeProjectCommand:
         with patch.object(
             context_detector, "analyze_project", return_value=sample_project_context
         ), patch.object(context_detector, "suggest_instructions", return_value=[]):
-
             output_file = temp_dir / "analysis.json"
 
             with patch("sys.stdout", new_callable=StringIO) as mock_stdout:

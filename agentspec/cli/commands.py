@@ -212,10 +212,6 @@ def list_instructions_command(
             if instruction.metadata:
                 print(f"  Category: {instruction.metadata.category}")
                 print(f"  Priority: {instruction.metadata.priority}")
-                if instruction.metadata.deprecated:
-                    print("  ⚠️  DEPRECATED")
-                    if instruction.metadata.replacement:
-                        print(f"  Replacement: {instruction.metadata.replacement}")
 
             if verbose:
                 print(f"  Content: {instruction.content}")
@@ -303,10 +299,6 @@ def list_templates_command(
 
                 if template.metadata:
                     print(f"  Complexity: {template.metadata.complexity}")
-                    if template.metadata.deprecated:
-                        print("  ⚠️  DEPRECATED")
-                        if template.metadata.replacement:
-                            print(f"  Replacement: {template.metadata.replacement}")
 
                 if verbose:
                     print(f"  Default tags: {', '.join(template.default_tags)}")

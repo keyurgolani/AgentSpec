@@ -5,7 +5,7 @@ A modular toolkit for generating comprehensive development specifications
 with smart context detection and template-based generation.
 """
 
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 __author__ = "Keyur Golani"
 
 from .core.ai_integrator import AIBestPracticesIntegrator

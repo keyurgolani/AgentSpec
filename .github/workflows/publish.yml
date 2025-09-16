@@ -38,13 +38,14 @@ jobs:
 
       - name: Run tests
         run: |
-          bash scripts/run_tests.sh
+          # Run tests excluding slow performance tests for CI
+          python -m pytest -v -m "not slow" --tb=short
 
       - name: Test CLI functionality
         run: |
           agentspec --help
           agentspec list-tags
-          agentspec generate --tags general,testing --output test_spec.md
+          agentspec generate --tags quality,testing --output test_spec.md
           test -f test_spec.md
 
   build:

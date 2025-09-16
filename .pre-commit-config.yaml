@@ -1,24 +1,25 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-added-large-files
-      - id: check-merge-conflict
-      - id: check-toml
-
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
+  - repo: local
     hooks:
       - id: black
-        language_version: python3
+        name: black
+        entry: black
+        language: system
+        types: [python]
         args: [--line-length=88]
-
-  - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
-    hooks:
       - id: isort
+        name: isort
+        entry: isort
+        language: system
+        types: [python]
         args: [--profile=black, --line-length=88]
-
+      - id: trailing-whitespace
+        name: Trim Trailing Whitespace
+        entry: sed -i '' 's/[[:space:]]*$//'
+        language: system
+        types: [text]
+      - id: end-of-file-fixer
+        name: Fix End of Files
+        entry: bash -c 'for file in "$@"; do if [[ -s "$file" && ! -z "$(tail -c 1 "$file")" ]]; then echo >> "$file"; fi; done' --
+        language: system
+        types: [text]

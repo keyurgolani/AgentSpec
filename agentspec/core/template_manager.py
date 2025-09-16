@@ -65,8 +65,6 @@ class TemplateMetadata:
     author: str = ""
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    deprecated: bool = False
-    replacement: Optional[str] = None
     tags: List[str] = field(default_factory=list)
 
 
@@ -138,10 +136,7 @@ class TemplateManager:
         )
         self.schema_path = (
             schema_path
-            or Path(__file__).parent.parent
-            / "data"
-            / "schemas"
-            / "template_schema.json"
+            or Path(__file__).parent.parent / "data" / "schemas" / "template.json"
         )
 
         self._templates: Dict[str, Template] = {}
@@ -185,8 +180,8 @@ class TemplateManager:
 
         self._templates.clear()
 
-        # Find all JSON files in the templates directory
-        json_files = list(self.templates_path.glob("*.json"))
+        # Find all JSON files in the templates directory and subdirectories
+        json_files = list(self.templates_path.glob("**/*.json"))
 
         if not json_files:
             logger.warning(f"No template files found in {self.templates_path}")
@@ -287,8 +282,6 @@ class TemplateManager:
                 author=meta_data.get("author", ""),
                 created_at=created_at,
                 updated_at=updated_at,
-                deprecated=meta_data.get("deprecated", False),
-                replacement=meta_data.get("replacement"),
                 tags=meta_data.get("tags", []),
             )
 
@@ -515,7 +508,6 @@ class TemplateManager:
                 "category": template.metadata.category,
                 "complexity": template.metadata.complexity,
                 "author": template.metadata.author,
-                "deprecated": template.metadata.deprecated,
                 "tags": template.metadata.tags,
             }
 
@@ -523,8 +515,6 @@ class TemplateManager:
                 metadata_dict["created_at"] = template.metadata.created_at.isoformat()
             if template.metadata.updated_at:
                 metadata_dict["updated_at"] = template.metadata.updated_at.isoformat()
-            if template.metadata.replacement:
-                metadata_dict["replacement"] = template.metadata.replacement
 
             data["metadata"] = metadata_dict
 
@@ -603,14 +593,6 @@ class TemplateManager:
                     f"Condition weight must be between 0 and 1: {condition.weight}"
                 )
 
-        # Deprecation warnings
-        if template.metadata and template.metadata.deprecated:
-            warnings.append(f"Template {template.id} is deprecated")
-            if not template.metadata.replacement:
-                warnings.append(
-                    f"Deprecated template {template.id} has no replacement specified"
-                )
-
         return ValidationResult(
             is_valid=len(errors) == 0, errors=errors, warnings=warnings
         )
@@ -638,9 +620,6 @@ class TemplateManager:
         recommendations = []
 
         for template in self._templates.values():
-            # Skip deprecated templates unless explicitly requested
-            if template.metadata and template.metadata.deprecated:
-                continue
 
             score, matching_conditions, reasons = self._calculate_template_score(
                 template, project_context
@@ -1254,7 +1233,6 @@ class TemplateManager:
             "inheritance_relationships": 0,
             "parameterized_templates": 0,
             "conditional_templates": 0,
-            "deprecated_templates": 0,
         }
 
         for template in self._templates.values():
@@ -1282,10 +1260,6 @@ class TemplateManager:
                 analytics["categories"][category] = (
                     analytics["categories"].get(category, 0) + 1
                 )
-
-                # Deprecated count
-                if template.metadata.deprecated:
-                    analytics["deprecated_templates"] += 1
 
             # Feature counts
             if template.inheritance:
@@ -1381,16 +1355,5 @@ class TemplateManager:
             validation_results["suggestions"].append(
                 f"Consider adding templates for popular technologies: {', '.join(missing_tech)}"
             )
-
-        # Check for deprecated templates without replacements
-        for template in self._templates.values():
-            if (
-                template.metadata
-                and template.metadata.deprecated
-                and not template.metadata.replacement
-            ):
-                validation_results["warnings"].append(
-                    f"Deprecated template {template.id} has no replacement specified"
-                )
 
         return validation_results

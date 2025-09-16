@@ -2,9 +2,9 @@
   "instructions": [
     {
       "id": "test_driven_development",
-      "version": "1.0.0",
-      "tags": ["testing", "tdd", "quality", "validation"],
-      "content": "Write or update tests BEFORE implementing code. Ensure tests pass and never modify tests to satisfy failing code. Create comprehensive test cases before implementation.",
+      "version": "1.1.0",
+      "tags": ["testing", "tdd", "quality", "validation", "backend"],
+      "content": "Write or update tests BEFORE implementing code. Ensure tests pass and never modify tests to satisfy failing code. Create comprehensive test cases before implementation. For backend services, implement Test-Driven Development where tests serve as executable specifications and provide guardrails against regressions. Write comprehensive unit tests first, ensuring they fail initially, then implement code to make tests pass.",
       "metadata": {
         "category": "testing",
         "priority": 10,
@@ -14,10 +14,10 @@
       }
     },
     {
-      "id": "comprehensive_test_suite",
-      "version": "1.0.0",
+      "id": "test_suite",
+      "version": "1.1.0",
       "tags": ["testing", "automation", "validation", "quality"],
-      "content": "Build unit, integration, and end-to-end tests organized by feature. Run suite after every change. Create `test` script that shows progress and exits on first failure.",
+      "content": "Implement comprehensive test automation with unit, integration, and end-to-end tests organized by feature. Use appropriate testing frameworks and maintain test suites with proper coverage and reliability. Run suite after every change. Create `test` script that shows progress and exits on first failure.",
       "metadata": {
         "category": "testing",
         "priority": 9,
@@ -102,6 +102,19 @@
         "author": "Research Integration",
         "created_at": "2024-01-01T00:00:00Z",
         "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "runtime_validation",
+      "version": "1.1.0",
+      "tags": ["testing", "browser", "validation", "quality-assurance"],
+      "content": "Use browser console logs and automated testing to confirm application loads without errors and all interactions work. Iterate until zero errors remain. Integrate runtime validation with comprehensive quality standards to maintain zero tolerance for errors across the entire development workflow.",
+      "metadata": {
+        "category": "testing",
+        "priority": 8,
+        "author": "AgentSpec Consolidated",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-12-15T00:00:00Z"
       }
     }
   ]

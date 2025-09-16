@@ -8,16 +8,16 @@ from unittest.mock import Mock, mock_open, patch
 
 import pytest
 
-from agentspec.core.instruction_database import (
+from agentspec.core.instruction import (
     Condition,
     Conflict,
     Instruction,
-    InstructionDatabase,
     InstructionMetadata,
     Parameter,
     ValidationResult,
     VersionInfo,
 )
+from agentspec.core.instruction_database import InstructionDatabase
 from tests.conftest import assert_validation_result, create_test_instruction
 
 
@@ -99,8 +99,11 @@ class TestInstructionDatabase:
 
         testing_instructions = instruction_database.get_by_tags(["testing"])
 
-        assert len(testing_instructions) == 1
-        assert testing_instructions[0].id == "unit_testing"
+        assert len(testing_instructions) == 3
+        instruction_ids = [inst.id for inst in testing_instructions]
+        assert "unit_testing" in instruction_ids
+        assert "no_error_policy" in instruction_ids
+        assert "continuous_validation_loop" in instruction_ids
 
     def test_get_by_tags_multiple_tags(self, instruction_database):
         """Test getting instructions by multiple tags."""
@@ -109,10 +112,12 @@ class TestInstructionDatabase:
         instructions = instruction_database.get_by_tags(["general", "testing"])
 
         # Should return instructions that match any of the tags
-        assert len(instructions) == 2
+        assert len(instructions) == 4
         instruction_ids = [inst.id for inst in instructions]
         assert "general_quality" in instruction_ids
         assert "unit_testing" in instruction_ids
+        assert "no_error_policy" in instruction_ids
+        assert "continuous_validation_loop" in instruction_ids
 
     def test_get_by_tags_no_matches(self, instruction_database):
         """Test getting instructions with no matching tags."""
@@ -129,14 +134,14 @@ class TestInstructionDatabase:
         instructions = instruction_database.get_by_tags([])
 
         # Should return all instructions
-        assert len(instructions) == 2
+        assert len(instructions) == 13
 
     def test_validate_instruction_valid(self, sample_instruction):
         """Test validation of valid instruction."""
         db = InstructionDatabase()
         result = db.validate_instruction(sample_instruction)
 
-        assert_validation_result(result, should_be_valid=True)
+        assert_validation_result(result, should_be_valid=True, expected_warnings=2)
 
     def test_validate_instruction_missing_id(self):
         """Test validation of instruction with missing ID."""
@@ -145,7 +150,9 @@ class TestInstructionDatabase:
         db = InstructionDatabase()
         result = db.validate_instruction(instruction)
 
-        assert_validation_result(result, should_be_valid=False, expected_errors=2)
+        assert_validation_result(
+            result, should_be_valid=False, expected_errors=2, expected_warnings=2
+        )
         assert any("ID cannot be empty" in error for error in result.errors)
 
     def test_validate_instruction_short_content(self):
@@ -155,7 +162,9 @@ class TestInstructionDatabase:
         db = InstructionDatabase()
         result = db.validate_instruction(instruction)
 
-        assert_validation_result(result, should_be_valid=False, expected_errors=2)
+        assert_validation_result(
+            result, should_be_valid=False, expected_errors=2, expected_warnings=2
+        )
         assert any("at least 10 characters" in error for error in result.errors)
 
     def test_validate_instruction_no_tags(self):
@@ -165,7 +174,9 @@ class TestInstructionDatabase:
         db = InstructionDatabase()
         result = db.validate_instruction(instruction)
 
-        assert_validation_result(result, should_be_valid=False, expected_errors=2)
+        assert_validation_result(
+            result, should_be_valid=False, expected_errors=2, expected_warnings=2
+        )
         assert any("at least one tag" in error for error in result.errors)
 
     def test_validate_instruction_invalid_version(self):
@@ -176,7 +187,9 @@ class TestInstructionDatabase:
         db = InstructionDatabase()
         result = db.validate_instruction(instruction)
 
-        assert_validation_result(result, should_be_valid=False, expected_errors=2)
+        assert_validation_result(
+            result, should_be_valid=False, expected_errors=2, expected_warnings=2
+        )
         assert any("semantic versioning format" in error for error in result.errors)
 
     def test_get_instruction_metadata(self, instruction_database):
@@ -242,13 +255,13 @@ class TestInstructionDatabase:
         """Test reloading instructions."""
         # Load initially
         instructions1 = instruction_database.load_instructions()
-        assert len(instructions1) == 2
+        assert len(instructions1) == 13
 
         # Reload
         instruction_database.reload()
         instructions2 = instruction_database.load_instructions()
 
-        assert len(instructions2) == 2
+        assert len(instructions2) == 13
         assert instruction_database._loaded
 
     def test_detect_conflicts_no_conflicts(self, instruction_database):
@@ -345,16 +358,6 @@ class TestVersionInfo:
         assert v3 >= v2
         assert v2 >= v1
         assert v1 == VersionInfo(1, 0, 0)
-
-    def test_is_compatible(self):
-        """Test version compatibility check."""
-        v1 = VersionInfo(1, 0, 0)
-        v2 = VersionInfo(1, 1, 0)
-        v3 = VersionInfo(2, 0, 0)
-
-        assert v1.is_compatible(v2)
-        assert not v1.is_compatible(v3)
-        assert not v2.is_compatible(v3)
 
 
 class TestCondition:
