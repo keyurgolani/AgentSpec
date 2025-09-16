@@ -198,7 +198,6 @@ $RECYCLE.BIN/
 *~
 
 # AgentSpec specific
-task_contexts/
 project_context.md
 project_spec.md
 *.agentspec

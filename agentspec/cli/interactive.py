@@ -1,7 +1,7 @@
 """
 Interactive CLI Wizard
 
-This module provides the InteractiveWizard class for enhanced interactive
+This module provides the InteractiveWizard class for interactive
 specification generation with project detection and smart recommendations.
 """
 
@@ -15,17 +15,9 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 # Import core components
-from ..core.context_detector import (
-    ContextDetector,
-    ProjectContext,
-    ProjectType,
-)
+from ..core.context_detector import ContextDetector, ProjectContext, ProjectType
 from ..core.instruction_database import InstructionDatabase
-from ..core.template_manager import (
-    Template,
-    TemplateManager,
-    TemplateRecommendation,
-)
+from ..core.template_manager import Template, TemplateManager, TemplateRecommendation
 from ..utils.config import ConfigManager
 
 logger = logging.getLogger(__name__)
@@ -277,7 +269,7 @@ Optional parameters will use defaults if not specified.
 
 class InteractiveWizard:
     """
-    Enhanced interactive CLI wizard for specification generation.
+    Interactive CLI wizard for specification generation.
 
     This class provides a step-by-step guided experience for users to:
     - Detect project type automatically
@@ -395,7 +387,7 @@ class InteractiveWizard:
         self.state.progress_percentage = min(int(progress_float), 100)
 
     def _display_progress(self) -> None:
-        """Display enhanced progress bar and current step"""
+        """Display progress bar and current step"""
         progress = self.state.progress_percentage
         bar_length = 40
         filled_length = int(bar_length * progress // 100)
@@ -651,7 +643,7 @@ class InteractiveWizard:
 
                 print()
 
-                # Enhanced options with validation
+                # Options with validation
                 options = [
                     f"Use detected type: {Colors.highlight(project_type)}",
                     "Choose different type manually",
@@ -816,7 +808,7 @@ class InteractiveWizard:
         self._advance_step(WizardStep.TEMPLATE_RECOMMENDATION)
 
     def _step_template_recommendation(self) -> None:
-        """Template recommendation step with enhanced scoring and reasoning"""
+        """Template recommendation step with scoring and reasoning"""
         print("\n🎯 Finding recommended templates...")
 
         # Get template recommendations
@@ -971,7 +963,7 @@ class InteractiveWizard:
         print("\n📝 Select a template:")
         print()
 
-        # Show available templates with enhanced information
+        # Show available templates with information
         for i, template in enumerate(self.state.available_templates, 1):
             print(f"{i:2d}. {template.name}")
             print(f"    {template.description}")
@@ -1401,11 +1393,11 @@ class InteractiveWizard:
         self._advance_step(WizardStep.CONFIRMATION)
 
     def _step_confirmation(self) -> None:
-        """Final confirmation step with enhanced summary"""
+        """Final confirmation step with summary"""
         print(f"\n{Colors.success('Ready to generate specification!')}")
         print()
 
-        # Enhanced summary with colors and icons
+        # Summary with colors and icons
         config = self._generate_final_config()
 
         print(Colors.highlight("📋 Generation Summary"))
@@ -1608,7 +1600,7 @@ class InteractiveWizard:
             context: Initial project context from ContextDetector
 
         Returns:
-            Enhanced ProjectContext with improved classification
+            ProjectContext with improved classification
         """
         # Create classification confidence scores for different project types
         type_scores = {}
@@ -1737,7 +1729,7 @@ class InteractiveWizard:
                 context.metadata["type_scores"] = {
                     pt.value: score for pt, score in type_scores.items()
                 }
-                context.metadata["classification_method"] = "enhanced_analysis"
+                context.metadata["classification_method"] = "detailed_analysis"
 
         return context
 

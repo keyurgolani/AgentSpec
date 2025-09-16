@@ -15,9 +15,9 @@
     },
     {
       "id": "infrastructure_as_code",
-      "version": "1.0.0",
-      "tags": ["cloud", "infrastructure", "iac", "automation"],
-      "content": "Use Infrastructure as Code (Terraform, CloudFormation, Pulumi) for reproducible deployments. Version control infrastructure definitions and implement proper change management processes.",
+      "version": "1.1.0",
+      "tags": ["cloud", "infrastructure", "iac", "automation", "provisioning"],
+      "content": "Use Infrastructure as Code (IaC) for automated infrastructure provisioning and management. Implement tools like Terraform, CloudFormation, or Pulumi for consistent, repeatable deployments. Version control infrastructure definitions, implement proper change management processes, and ensure reproducible deployments across environments.",
       "metadata": {
         "category": "cloud",
         "priority": 9,

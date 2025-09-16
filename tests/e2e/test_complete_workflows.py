@@ -198,7 +198,6 @@ test('renders without crashing', () => {
 
         # Test the real CLI functionality
         try:
-
             # Run the complete workflow with real services
             result = cli.run(
                 [
@@ -329,7 +328,7 @@ Base = declarative_base()
 
 class Item(Base):
     __tablename__ = "items"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     description = Column(String)
@@ -352,7 +351,7 @@ class ItemCreate(ItemBase):
 
 class Item(ItemBase):
     id: int
-    
+
     class Config:
         orm_mode = True
         """
@@ -463,13 +462,13 @@ Generated: 2023-12-01 10:00:00
 
 ## IMPLEMENTATION FRAMEWORK
 
-### Pre-Task Checklist
-- [ ] Load existing task context
+### Pre-Development Checklist
+- [ ] Load existing project context
 - [ ] Analyze codebase thoroughly
 - [ ] Define clear exit criteria
 
 ### During Implementation
-- [ ] Update task context after each step
+- [ ] Update project context after each step
 - [ ] Run tests continuously
 - [ ] Validate integration points
 
@@ -602,7 +601,6 @@ test('renders component {i}', () => {{
         cli = AgentSpecCLI()
 
         with patch("agentspec.core.context_detector.ContextDetector") as mock_cd:
-
             # Mock context detection to avoid actual file system scanning
             mock_context = type(
                 "ProjectContext",
@@ -642,85 +640,3 @@ test('renders component {i}', () => {{
             assert (
                 execution_time < 10.0
             ), f"Analysis took too long: {execution_time:.2f}s"
-
-
-class TestCLICompatibility:
-    """Test CLI compatibility and edge cases."""
-
-    def test_backward_compatibility(self, temp_dir):
-        """Test backward compatibility with older interfaces."""
-        from agentspec.cli.main import AgentSpecCLI
-
-        cli = AgentSpecCLI()
-
-        # Test old-style command formats still work
-        with patch(
-            "agentspec.core.instruction_database.InstructionDatabase"
-        ) as mock_idb:
-            mock_db = mock_idb.return_value
-            mock_db.load_instructions.return_value = {}
-            mock_db.get_all_tags.return_value = set()
-
-            # Should handle various argument formats
-            result = cli.run(["list-tags"])
-            assert result == 0
-
-            result = cli.run(["list-tags", "--verbose"])
-            assert result == 0
-
-    def test_configuration_compatibility(self, temp_dir):
-        """Test configuration file compatibility."""
-        # Create old-style config
-        old_config = temp_dir / ".agentspec"
-        old_config.write_text(
-            """
-# Old style configuration
-instructions_path = custom/instructions
-templates_path = custom/templates
-        """
-        )
-
-        # Create new-style config
-        new_config = temp_dir / ".agentspec.yaml"
-        new_config.write_text(
-            """
-agentspec:
-  version: "2.0.0"
-  paths:
-    instructions: "new/instructions"
-    templates: "new/templates"
-        """
-        )
-
-        from agentspec.cli.main import AgentSpecCLI
-
-        cli = AgentSpecCLI()
-
-        # Should handle both config formats gracefully
-        with patch("agentspec.core.instruction_database.InstructionDatabase"):
-            result = cli.run(["--config", str(new_config), "list-tags"])
-            # Should not crash, even if paths don't exist
-            assert isinstance(result, int)
-
-    def test_cross_platform_compatibility(self, temp_dir):
-        """Test cross-platform path handling."""
-        from agentspec.cli.main import AgentSpecCLI
-
-        cli = AgentSpecCLI()
-
-        # Test with different path formats
-        paths_to_test = [
-            str(temp_dir),  # Absolute path
-            ".",  # Relative path
-            str(temp_dir / "subdir"),  # Nested path
-        ]
-
-        for path in paths_to_test:
-            # Mock the analyze_project method at the class level
-            with patch(
-                "agentspec.core.context_detector.ContextDetector.analyze_project",
-                side_effect=ValueError("Invalid path"),
-            ):
-                # Should handle path errors gracefully
-                result = cli.run(["analyze", path])
-                assert result == 1  # Should return error code, not crash

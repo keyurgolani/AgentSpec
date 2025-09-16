@@ -9,7 +9,7 @@ AI instructions and templates.
 import json
 import logging
 from pathlib import Path
-from typing import Dict, List
+from typing import Any, Dict, List
 
 from .context_detector import ContextDetector
 from .instruction_database import InstructionDatabase
@@ -34,9 +34,9 @@ class AIBestPracticesIntegrator:
         self.template_manager = template_manager
         self.context_detector = context_detector
 
-    def analyze_project(self) -> Dict:
+    def analyze_project(self) -> Dict[str, Any]:
         """Analyze the project to determine appropriate AI integrations"""
-        analysis = {
+        analysis: Dict[str, Any] = {
             "project_type": "unknown",
             "technologies": [],
             "has_ai_tools": False,
@@ -119,12 +119,12 @@ class AIBestPracticesIntegrator:
 
         return False
 
-    def _analyze_existing_config(self) -> Dict:
+    def _analyze_existing_config(self) -> Dict[str, Any]:
         """Analyze existing AgentSpec configuration"""
-        config = {}
+        config: Dict[str, Any] = {}
 
         # Check for existing AI instructions
-        current_ai_instructions = []
+        current_ai_instructions: List[str] = []
 
         # Look for project spec
         spec_files = list(self.agentspec_path.glob("*spec*.md"))
@@ -282,9 +282,9 @@ class AIBestPracticesIntegrator:
 
         return "low"
 
-    def generate_integration_plan(self, analysis: Dict) -> Dict:
+    def generate_integration_plan(self, analysis: Dict[str, Any]) -> Dict[str, Any]:
         """Generate a detailed integration plan"""
-        plan = {
+        plan: Dict[str, Any] = {
             "phases": [],
             "estimated_duration": "2-4 weeks",
             "prerequisites": [],
@@ -359,7 +359,9 @@ class AIBestPracticesIntegrator:
 
         # Set overall duration based on phases
         total_weeks = sum(
-            int(phase["duration"].split()[0].split("-")[-1]) for phase in plan["phases"]
+            int(phase["duration"].split()[0].split("-")[-1])
+            for phase in plan["phases"]
+            if isinstance(phase, dict) and "duration" in phase
         )
         plan["estimated_duration"] = f"{total_weeks} weeks"
 

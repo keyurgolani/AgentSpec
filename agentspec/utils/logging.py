@@ -92,7 +92,7 @@ class ContextFilter(logging.Filter):
 
 
 class AgentSpecLogger:
-    """Enhanced logger with context management and structured logging."""
+    """Logger with context management and structured logging."""
 
     def __init__(self, name: str):
         self.logger = logging.getLogger(name)
@@ -236,7 +236,7 @@ def _setup_basic_logging(
 
 
 def get_logger(name: str) -> AgentSpecLogger:
-    """Get an enhanced logger instance."""
+    """Get a logger instance."""
     return AgentSpecLogger(name)
 
 
@@ -319,3 +319,46 @@ def configure_third_party_loggers() -> None:
 
 # Module-level logger for this module
 _logger = get_logger(__name__)
+
+
+def get_logger_with_context(name: str, **context: Any) -> AgentSpecLogger:
+    """
+    Get a logger instance with pre-set context.
+
+    Args:
+        name: Logger name
+        **context: Context to set on the logger
+
+    Returns:
+        AgentSpecLogger with context set
+    """
+    logger = get_logger(name)
+    logger.set_context(context)
+    return logger
+
+
+def log_performance(
+    logger: Union[AgentSpecLogger, logging.Logger],
+    operation: str,
+    duration: float,
+    **context: Any,
+) -> None:
+    """
+    Log performance information for an operation.
+
+    Args:
+        logger: Logger instance to use
+        operation: Name of the operation
+        duration: Duration in seconds
+        **context: Additional context to include
+    """
+    if isinstance(logger, AgentSpecLogger):
+        logger.info(
+            f"Performance: {operation} took {duration:.3f}s",
+            operation=operation,
+            duration=duration,
+            performance=True,
+            **context,
+        )
+    else:
+        logger.info(f"Performance: {operation} took {duration:.3f}s")

@@ -10,7 +10,6 @@ from pathlib import Path
 import pytest
 
 from agentspec.core.instruction_database import InstructionDatabase
-from agentspec.core.task_context import TaskContextManager
 from agentspec.core.template_manager import TemplateManager
 
 
@@ -155,7 +154,7 @@ class TestFileSystemIntegration:
         }
 
         # Save template files
-        with open(templates_dir / "react-app.json", "w") as f:
+        with open(templates_dir / "react_app.json", "w") as f:
             json.dump(react_template, f, indent=2)
 
         with open(templates_dir / "vue-app.json", "w") as f:
@@ -186,64 +185,6 @@ class TestFileSystemIntegration:
         react_templates = manager.get_templates_by_technology("react")
         assert len(react_templates) == 1
         assert react_templates[0].id == "react_app"
-
-    def test_task_context_file_persistence(self, temp_dir):
-        """Test task context file persistence integration."""
-        contexts_dir = temp_dir / "task_contexts"
-
-        manager = TaskContextManager(contexts_path=contexts_dir)
-
-        # Create task definition
-        from agentspec.core.task_context import (
-            TaskDefinition,
-            TaskDependency,
-            TaskPriority,
-        )
-
-        task_def = TaskDefinition(
-            title="Implement User Authentication",
-            description="Add login and registration functionality with JWT tokens",
-            category="feature-development",
-            priority=TaskPriority.HIGH,
-            estimated_duration=480,  # 8 hours
-            tags=["authentication", "security", "backend"],
-            assignee="developer@example.com",
-        )
-
-        # Create task context
-        task_context = manager.create_task_context(task_def)
-        task_id = task_context.id
-
-        # Verify file was created
-        context_file = contexts_dir / f"{task_id}.json"
-        assert context_file.exists()
-
-        # Verify file content
-        with open(context_file) as f:
-            saved_data = json.load(f)
-
-        assert saved_data["id"] == task_id
-        assert saved_data["title"] == "Implement User Authentication"
-        assert saved_data["metadata"]["category"] == "feature-development"
-        assert saved_data["metadata"]["priority"] == "high"
-
-        # Clear manager cache and reload
-        manager._contexts.clear()
-        loaded_context = manager.load_task_context(task_id)
-
-        assert loaded_context is not None
-        assert loaded_context.title == task_context.title
-        assert loaded_context.description == task_context.description
-        assert loaded_context.metadata.priority == TaskPriority.HIGH
-
-        # Test updating context
-        loaded_context.description = "Updated description with more details"
-        manager.update_task_context(loaded_context)
-
-        # Reload and verify update
-        manager._contexts.clear()
-        updated_context = manager.load_task_context(task_id)
-        assert "Updated description" in updated_context.description
 
     def test_cross_component_file_integration(self, temp_dir):
         """Test integration between components using file system."""
@@ -291,7 +232,6 @@ class TestFileSystemIntegration:
         # Initialize components
         instruction_db = InstructionDatabase(instructions_path=instructions_dir)
         template_manager = TemplateManager(templates_path=templates_dir)
-        task_manager = TaskContextManager(contexts_path=contexts_dir)
 
         # Load data
         instructions = instruction_db.load_instructions()
@@ -305,30 +245,6 @@ class TestFileSystemIntegration:
         assert instruction is not None
         assert instruction.id == "react_testing_setup"
         assert "testing" in instruction.tags
-
-        # Create task context related to the template
-        from agentspec.core.task_context import TaskDefinition
-
-        task_def = TaskDefinition(
-            title="Setup React Testing Environment",
-            description=f"Implement testing setup using template {template.id}",
-            category="setup",
-            tags=["react", "testing", "setup"],
-        )
-
-        task_context = task_manager.create_task_context(task_def)
-        task_context.template_id = template.id
-        task_context.context_data = {
-            "template_used": template.id,
-            "instructions_applied": template.required_instructions,
-        }
-
-        task_manager.update_task_context(task_context)
-
-        # Verify everything persisted correctly
-        reloaded_task = task_manager.load_task_context(task_context.id)
-        assert reloaded_task.template_id == template.id
-        assert reloaded_task.context_data["template_used"] == template.id
 
     def test_concurrent_file_operations(self, temp_dir):
         """Test concurrent file operations integration."""

@@ -16,9 +16,11 @@ from agentspec.core.template_manager import TemplateManager
 
 
 @pytest.mark.slow
+@pytest.mark.timeout(300)  # 5 minute timeout for performance tests
 class TestPerformance:
     """Performance tests for AgentSpec components."""
 
+    @pytest.mark.timeout(120)  # 2 minute timeout
     def test_large_instruction_database_performance(self, temp_dir):
         """Test performance with large instruction database."""
         instructions_dir = temp_dir / "instructions"
@@ -131,6 +133,7 @@ class TestPerformance:
             conflict_time < 10.0
         ), f"Conflict detection took {conflict_time:.2f}s (expected < 10s)"
 
+    @pytest.mark.timeout(120)  # 2 minute timeout
     def test_large_template_database_performance(self, temp_dir):
         """Test performance with large template database."""
         templates_dir = temp_dir / "templates"
@@ -244,6 +247,7 @@ class TestPerformance:
             recommendation_time < 2.0
         ), f"Template recommendation took {recommendation_time:.2f}s (expected < 2s)"
 
+    @pytest.mark.timeout(180)  # 3 minute timeout
     def test_project_analysis_performance(self, temp_dir):
         """Test performance of project analysis with large projects."""
         # Create large project structure
@@ -283,7 +287,7 @@ class Example_{i} {{
         this.value = {i};
         this.depth = {depth};
     }}
-    
+
     method_{i}() {{
         return this.value * this.depth;
     }}
@@ -500,6 +504,7 @@ export default Example_{i};
             concurrent_gen_time < 15.0
         ), f"Concurrent spec generation took {concurrent_gen_time:.2f}s (expected < 15s)"
 
+    @pytest.mark.timeout(180)  # 3 minute timeout
     def test_memory_usage_performance(self, temp_dir):
         """Test memory usage with large datasets."""
         import os

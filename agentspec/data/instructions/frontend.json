@@ -13,19 +13,7 @@
         "updated_at": "2024-01-01T00:00:00Z"
       }
     },
-    {
-      "id": "accessibility_compliance",
-      "version": "1.0.0",
-      "tags": ["accessibility", "frontend", "ui", "compliance"],
-      "content": "Ensure WCAG 2.1 AA compliance with proper ARIA labels, keyboard navigation, color contrast ratios, and screen reader compatibility.",
-      "metadata": {
-        "category": "frontend",
-        "priority": 8,
-        "author": "AgentSpec",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
-      }
-    },
+
     {
       "id": "mobile_responsiveness",
       "version": "1.0.0",
@@ -65,19 +53,7 @@
         "updated_at": "2024-01-01T00:00:00Z"
       }
     },
-    {
-      "id": "frontend_performance",
-      "version": "1.0.0",
-      "tags": ["frontend", "performance", "optimization", "loading"],
-      "content": "Optimize frontend performance with code splitting, lazy loading, image optimization, and efficient bundling. Minimize render blocking resources and implement performance budgets.",
-      "metadata": {
-        "category": "frontend",
-        "priority": 9,
-        "author": "AgentSpec",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
-      }
-    },
+
     {
       "id": "design_to_code_conversion",
       "version": "1.0.0",
@@ -113,6 +89,58 @@
         "category": "frontend",
         "priority": 6,
         "author": "Research Integration",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "user_feedback_integration",
+      "version": "1.0.0",
+      "tags": ["frontend", "ux", "feedback", "analytics", "improvement"],
+      "content": "Integrate user feedback mechanisms with analytics, surveys, and user testing. Implement feedback loops to continuously improve user experience based on real usage data.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "error_user_experience",
+      "version": "1.0.0",
+      "tags": ["frontend", "ux", "error-handling", "messaging", "recovery"],
+      "content": "Design user-friendly error experiences with clear messages, recovery suggestions, and graceful degradation. Avoid technical jargon and provide actionable next steps for users.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "loading_states",
+      "version": "1.0.0",
+      "tags": ["frontend", "ux", "loading", "performance", "feedback"],
+      "content": "Implement proper loading states with progress indicators, skeleton screens, and optimistic updates. Provide feedback for long-running operations and allow cancellation when appropriate.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "onboarding_experience",
+      "version": "1.0.0",
+      "tags": ["frontend", "ux", "onboarding", "tutorial", "engagement"],
+      "content": "Design effective user onboarding with progressive disclosure, interactive tutorials, and clear value proposition. Minimize time to first value and provide contextual help.",
+      "metadata": {
+        "category": "frontend",
+        "priority": 7,
+        "author": "AgentSpec",
         "created_at": "2024-01-01T00:00:00Z",
         "updated_at": "2024-01-01T00:00:00Z"
       }

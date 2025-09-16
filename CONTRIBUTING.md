@@ -10,13 +10,13 @@ We welcome contributions to AgentSpec! This guide will help you get started.
    git clone https://github.com/keyurgolani/agentspec.git
    cd agentspec
    ```
-3. Initialize AgentSpec in the project:
+3. Install in development mode:
    ```bash
-   bash setup.sh
+   pip install -e ".[dev]"
    ```
 4. Generate a development spec:
    ```bash
-   python agentspec.py --tags general,testing,python -o dev_spec.md
+   agentspec generate --tags general,testing,python --output dev_spec.md
    ```
 
 ## Code Standards
@@ -62,21 +62,23 @@ To add new instructions to the database:
    ```
 
 2. Implement changes following AgentSpec guidelines:
-   - Create task context: `task_contexts/your_feature.md`
-   - Update context after each step
-   - Run validation frequently: `bash scripts/validate.sh`
+   - Update project context after each step
+   - Run tests frequently: `pytest`
 
 3. Ensure all checks pass:
    ```bash
-   # Run comprehensive validation
-   bash scripts/validate.sh
-   
    # Run tests
-   python -m pytest tests/
-   
+   pytest
+
+   # Run type checking
+   mypy agentspec/
+
+   # Run linting
+   flake8 agentspec/ tests/
+
    # Test CLI functionality
-   python agentspec.py --list-tags
-   python agentspec.py --tags general,testing -o test_spec.md
+   agentspec list-tags
+   agentspec generate --tags general,testing --output test_spec.md
    ```
 
 4. Update documentation:
@@ -95,9 +97,10 @@ To add new instructions to the database:
 When reporting issues:
 
 1. Use provided issue templates
-2. Include AgentSpec compliance report if applicable:
+2. Include system information and test results:
    ```bash
-   bash scripts/validate.sh --report
+   agentspec --version
+   python --version
    ```
 3. Provide minimal reproduction steps
 4. Tag issues with relevant AgentSpec categories
@@ -129,15 +132,18 @@ Example test structure:
 ```python
 def test_generate_spec_with_valid_tags():
     """Test spec generation with valid tags produces expected output."""
+    from agentspec.core.spec_generator import SpecGenerator, SpecConfig
+
     # Arrange
-    tags = ["general", "testing"]
-    
+    spec_generator = SpecGenerator()
+    config = SpecConfig(selected_tags=["general", "testing"])
+
     # Act
-    result = agentspec.generate_spec(tags)
-    
+    result = spec_generator.generate_spec(config)
+
     # Assert
-    assert "GENERAL GUIDELINES" in result
-    assert "TESTING GUIDELINES" in result
+    assert "CORE WORKFLOW INSTRUCTIONS" in result.content
+    assert "TESTING" in result.content
 ```
 
 ## Documentation
@@ -155,14 +161,13 @@ def test_generate_spec_with_valid_tags():
 docs/
 ├── getting-started.md      # Quick start guide
 ├── specifications.md       # Spec reference
-├── task-contexts.md       # Context management guide
 ├── validation.md          # Validation framework
 └── best-practices.md      # Best practices guide
 ```
 
 ## Release Process
 
-1. Update version in `agentspec.py`
+1. Update version in `pyproject.toml` and `agentspec/__init__.py`
 2. Update CHANGELOG.md with new features/fixes
 3. Create release PR
 4. Tag release after merge

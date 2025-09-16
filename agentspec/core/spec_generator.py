@@ -12,12 +12,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from ..utils.config import ConfigManager
 from .context_detector import ContextDetector, ProjectContext
-from .instruction_database import (
-    Instruction,
-    InstructionDatabase,
-    ValidationResult,
-)
+from .instruction_database import Instruction, InstructionDatabase, ValidationResult
 from .template_manager import Template, TemplateManager
 
 logger = logging.getLogger(__name__)
@@ -68,6 +65,7 @@ class SpecGenerator:
         instruction_db: Optional[InstructionDatabase] = None,
         template_manager: Optional[TemplateManager] = None,
         context_detector: Optional[ContextDetector] = None,
+        config_manager: Optional[ConfigManager] = None,
     ):
         """
         Initialize the specification generator.
@@ -76,10 +74,15 @@ class SpecGenerator:
             instruction_db: InstructionDatabase instance
             template_manager: TemplateManager instance
             context_detector: ContextDetector instance
+            config_manager: ConfigManager instance
         """
         self.instruction_db = instruction_db or InstructionDatabase()
         self.template_manager = template_manager or TemplateManager()
         self.context_detector = context_detector or ContextDetector()
+        self.config_manager = config_manager or ConfigManager()
+
+        # Load configuration
+        self.config = self.config_manager.load_config()
 
         # Load instructions and templates
         self.instruction_db.load_instructions()
@@ -229,8 +232,6 @@ class SpecGenerator:
                     warnings.append(
                         f"Referenced instruction not found: {instruction_id}"
                     )
-                elif instruction.metadata and instruction.metadata.deprecated:
-                    warnings.append(f"Using deprecated instruction: {instruction_id}")
 
         # Format-specific validation
         if spec.format == "json":
@@ -342,6 +343,21 @@ class SpecGenerator:
         instructions = []
         instruction_ids = set()
 
+        # Add always-included instructions from configuration
+        always_include = self.config_manager.get(
+            "agentspec.instructions.always_include", []
+        )
+        for instruction_id in always_include:
+            if instruction_id not in instruction_ids:
+                always_instruction = self.instruction_db.get_instruction(instruction_id)
+                if always_instruction is not None:
+                    instructions.append(always_instruction)
+                    instruction_ids.add(instruction_id)
+                else:
+                    logger.warning(
+                        f"Always-include instruction not found: {instruction_id}"
+                    )
+
         # Get instructions by tags
         if config.selected_tags:
             tag_instructions = self.instruction_db.get_by_tags(config.selected_tags)
@@ -360,12 +376,16 @@ class SpecGenerator:
                     instructions.append(selected_instruction)
                     instruction_ids.add(instruction_id)
 
-        # Remove excluded instructions
+        # Remove excluded instructions (but preserve always-included ones)
+        always_include = self.config_manager.get(
+            "agentspec.instructions.always_include", []
+        )
         if config.excluded_instructions:
             instructions = [
                 inst
                 for inst in instructions
                 if inst.id not in config.excluded_instructions
+                or inst.id in always_include
             ]
 
         # Resolve dependencies
@@ -666,21 +686,20 @@ class SpecGenerator:
 
             spec_data["instructions"].append(inst_data)
 
-        return yaml.dump(spec_data, default_flow_style=False, allow_unicode=True)
+        result: str = yaml.dump(spec_data, default_flow_style=False, allow_unicode=True)
+        return result
 
     def _get_implementation_framework(self) -> List[str]:
         """Get the standard implementation framework section"""
         return [
             "## IMPLEMENTATION FRAMEWORK",
             "",
-            "### Pre-Task Checklist",
-            "- [ ] Load existing task context from `task_contexts/<task_name>.md`",
+            "### Pre-Development Checklist",
             "- [ ] Analyze codebase thoroughly",
             "- [ ] Define clear exit criteria",
             "- [ ] Review project context for lessons learned",
             "",
             "### During Implementation",
-            "- [ ] Update task context after each significant step",
             "- [ ] Run tests continuously",
             "- [ ] Validate integration points",
             "- [ ] Document any deviations from plan",

@@ -1,25 +1,18 @@
 """
 Configuration module for AgentSpec.
 
-Contains default configuration files and configuration-related utilities.
+This module provides configuration file paths and default configurations
+for the AgentSpec system.
 """
 
 from pathlib import Path
 
-# Get the directory containing this module
-CONFIG_DIR = Path(__file__).parent
-
-
-def get_config_path(filename: str) -> Path:
-    """Get absolute path to a configuration file."""
-    return CONFIG_DIR / filename
-
 
 def get_default_config_path() -> Path:
-    """Get path to default configuration file."""
-    return CONFIG_DIR / "default.yaml"
+    """Get the path to the default configuration file"""
+    return Path(__file__).parent / "default.yaml"
 
 
 def get_logging_config_path() -> Path:
-    """Get path to logging configuration file."""
-    return CONFIG_DIR / "logging.yaml"
+    """Get the path to the logging configuration file"""
+    return Path(__file__).parent / "logging.yaml"

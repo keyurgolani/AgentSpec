@@ -279,7 +279,7 @@ Examples:
         # Help command
         help_parser = subparsers.add_parser("help", help="Show help information")
         help_parser.add_argument(
-            "command",
+            "help_target",
             nargs="?",
             metavar="COMMAND",
             help="Show help for specific command",
@@ -298,7 +298,11 @@ Examples:
             Exit code (0 for success, non-zero for error)
         """
         parser = self.create_parser()
-        parsed_args = parser.parse_args(args)
+        try:
+            parsed_args = parser.parse_args(args)
+        except SystemExit as e:
+            # Handle invalid commands gracefully
+            return int(e.code) if e.code is not None else 1
 
         # Handle global options
         if parsed_args.quiet:
@@ -308,7 +312,16 @@ Examples:
 
         # Initialize services (except for version and help commands)
         if parsed_args.command not in ["version", "help"]:
-            self.initialize_services(parsed_args.config)
+            try:
+                self.initialize_services(parsed_args.config)
+            except KeyboardInterrupt:
+                print("\nOperation cancelled by user.", file=sys.stderr)
+                return 1
+            except Exception as e:
+                if self.logger:
+                    self.logger.error(f"Error initializing services: {e}")
+                print(f"Error initializing services: {e}", file=sys.stderr)
+                return 1
 
         # Route to appropriate command handler
         try:
@@ -428,7 +441,9 @@ Examples:
 
             elif parsed_args.command == "help":
                 return help_command(
-                    parsed_args.command if hasattr(parsed_args, "command") else None
+                    parsed_args.help_target
+                    if hasattr(parsed_args, "help_target")
+                    else None
                 )
 
             else:
@@ -448,8 +463,12 @@ Examples:
 
 def main() -> int:
     """Main entry point for the CLI application"""
-    cli = AgentSpecCLI()
-    return cli.run()
+    try:
+        cli = AgentSpecCLI()
+        return cli.run()
+    except Exception as e:
+        print(f"Unexpected error: {e}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":
