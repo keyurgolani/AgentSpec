@@ -18,7 +18,7 @@ from .instruction.loader import InstructionLoader
 from .instruction.validator import InstructionValidator
 
 if TYPE_CHECKING:
-    from .context_detector import ProjectContext
+    pass  # ProjectContext import removed as it's not used
 
 logger = logging.getLogger(__name__)
 
@@ -270,7 +270,6 @@ class InstructionDatabase:
 
         # Simple topological sort implementation
         resolved = []
-        unresolved = set(instruction_ids)
 
         def resolve_instruction(inst_id: str, path: Set[str]) -> None:
             if inst_id in path:

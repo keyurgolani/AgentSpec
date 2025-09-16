@@ -7,19 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2025-09-16
+
+### Fixed
+- **Logging System Improvements**: Resolved issue where log files were created in user's current working directory
+  - Log files are now only created when `AGENTSPEC_DEBUG_LOGGING=1` environment variable is set
+  - When enabled, log files are stored in the AgentSpec installation directory (`agentspec/logs/`) instead of cluttering user workspaces
+  - Regular operation now uses console-only logging to keep user directories clean
+  - Added comprehensive logging documentation and troubleshooting guide
+  - Maintains backward compatibility with custom log file parameter for advanced users
+
+### Added
+- Environment-controlled debug logging with `AGENTSPEC_DEBUG_LOGGING` environment variable
+- Centralized log directory in installation path with automatic creation
+- Detailed logging documentation in `agentspec/logs/README.md`
+- Enhanced API documentation with logging examples and best practices
+
 ### Changed
 - **BREAKING**: Integrated AI best practices functionality into main CLI
   - Removed standalone `scripts/integrate_ai_best_practices.py` script
   - Added `agentspec integrate` command with same functionality
   - Improved architectural consistency across all AgentSpec features
 
-### Added
+### Added (Previous)
 - Comprehensive test coverage for `agentspec integrate` command
 - Detailed AI integration documentation (`docs/ai-integration.md`)
 - JSON output support for programmatic integration analysis
 - Enhanced CLI help text with integrate command examples
 
-### Fixed
+### Fixed (Previous)
 - Architectural inconsistency where AI integration was a separate script
 - Missing documentation for AI best practices integration workflow
 

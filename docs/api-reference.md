@@ -453,14 +453,28 @@ value = manager.get_config_value("agentspec.paths.instructions")
 ### Logging Setup
 
 ```python
+import os
 from agentspec.utils.logging import setup_logging
 
+# Basic setup (console only)
+setup_logging(log_level="INFO")
+
+# Enable debug logging with file output
+os.environ["AGENTSPEC_DEBUG_LOGGING"] = "1"
 setup_logging(
     log_level="DEBUG",
-    log_file="agentspec.log",
+    structured=True
+)
+
+# Custom log file (overrides environment-based logging)
+setup_logging(
+    log_level="DEBUG",
+    log_file="custom_agentspec.log",
     structured=True
 )
 ```
+
+**Note**: File logging is only enabled when the `AGENTSPEC_DEBUG_LOGGING` environment variable is set, or when a custom `log_file` is specified. Log files are stored in the AgentSpec installation directory to avoid cluttering user workspaces.
 
 
 

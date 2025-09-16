@@ -8,6 +8,7 @@ context managers for operation logging, and appropriate formatters.
 import json
 import logging
 import logging.config
+import os
 import sys
 import traceback
 from contextlib import contextmanager
@@ -147,6 +148,27 @@ class AgentSpecLogger:
         self.context_filter.context.clear()
 
 
+def get_log_directory() -> Optional[Path]:
+    """
+    Get the directory where log files should be stored.
+
+    Returns the installation directory of agentspec if debug logging is enabled,
+    otherwise returns None to disable file logging.
+    """
+    # Only create log files if debug logging is explicitly enabled
+    if not os.getenv("AGENTSPEC_DEBUG_LOGGING"):
+        return None
+
+    # Use the directory where the agentspec package is installed
+    package_dir = Path(__file__).parent.parent
+    log_dir = package_dir / "logs"
+
+    # Create logs directory if it doesn't exist
+    log_dir.mkdir(exist_ok=True)
+
+    return log_dir
+
+
 def setup_logging(
     config_path: Optional[Path] = None,
     log_level: Optional[str] = None,
@@ -160,10 +182,14 @@ def setup_logging(
     Args:
         config_path: Path to logging configuration file
         log_level: Override log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-        log_file: Path to log file
+        log_file: Path to log file (overrides environment-based file logging)
         structured: Whether to use structured JSON logging
         console_output: Whether to output to console
     """
+    # Check if file logging should be enabled
+    log_dir = get_log_directory()
+    enable_file_logging = log_dir is not None or log_file is not None
+
     # Use default config if none provided
     if config_path is None:
         config_path = get_logging_config_path()
@@ -173,26 +199,69 @@ def setup_logging(
         try:
             with open(config_path, "r") as f:
                 config = yaml.safe_load(f)
+
+            if enable_file_logging:
+                # Update file handler paths to use log directory
+                if log_dir and "handlers" in config:
+                    if "file" in config["handlers"]:
+                        config["handlers"]["file"]["filename"] = str(
+                            log_dir / "agentspec.log"
+                        )
+                    if "error_file" in config["handlers"]:
+                        config["handlers"]["error_file"]["filename"] = str(
+                            log_dir / "agentspec_errors.log"
+                        )
+            else:
+                # Remove file handlers from configuration when file logging is disabled
+                if "handlers" in config:
+                    # Remove file handlers
+                    config["handlers"].pop("file", None)
+                    config["handlers"].pop("error_file", None)
+
+                # Update logger configurations to remove file handler references
+                if "loggers" in config:
+                    for logger_name, logger_config in config["loggers"].items():
+                        if "handlers" in logger_config:
+                            # Remove file handlers from handler lists
+                            handlers = logger_config["handlers"]
+                            if isinstance(handlers, list):
+                                logger_config["handlers"] = [
+                                    h
+                                    for h in handlers
+                                    if h not in ["file", "error_file"]
+                                ]
+
             logging.config.dictConfig(config)
         except (yaml.YAMLError, KeyError) as e:
             # Fall back to basic configuration
-            _setup_basic_logging(log_level, log_file, structured, console_output)
+            _setup_basic_logging(
+                log_level,
+                log_file or (log_dir / "agentspec.log" if log_dir else None),
+                structured,
+                console_output,
+            )
             logging.warning(f"Failed to load logging config from {config_path}: {e}")
     else:
-        _setup_basic_logging(log_level, log_file, structured, console_output)
+        # Setup basic logging without file handlers if file logging is disabled
+        effective_log_file = log_file
+        if not log_file and log_dir:
+            effective_log_file = log_dir / "agentspec.log"
+        _setup_basic_logging(log_level, effective_log_file, structured, console_output)
 
     # Override log level if specified
     if log_level:
         logging.getLogger("agentspec").setLevel(getattr(logging, log_level.upper()))
 
-    # Log startup message
-    logger = get_logger("agentspec.logging")
-    logger.info(
-        "Logging system initialized",
-        config_path=str(config_path),
-        log_level=log_level,
-        structured=structured,
-    )
+    # Log startup message only if file logging is enabled
+    if enable_file_logging:
+        logger = get_logger("agentspec.logging")
+        logger.info(
+            "Logging system initialized",
+            config_path=str(config_path),
+            log_level=log_level,
+            structured=structured,
+            log_directory=str(log_dir) if log_dir else "custom",
+        )
 
 
 def _setup_basic_logging(

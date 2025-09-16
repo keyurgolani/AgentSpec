@@ -620,7 +620,6 @@ class TemplateManager:
         recommendations = []
 
         for template in self._templates.values():
-
             score, matching_conditions, reasons = self._calculate_template_score(
                 template, project_context
             )
