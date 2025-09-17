@@ -6,13 +6,13 @@ repos:
         entry: black
         language: system
         types: [python]
-        args: [--line-length=88]
+        args: [--check, --diff]
       - id: isort
         name: isort
         entry: isort
         language: system
         types: [python]
-        args: [--profile=black, --line-length=88]
+        args: [--check-only, --diff, --profile=black]
       - id: trailing-whitespace
         name: Trim Trailing Whitespace
         entry: sed -i '' 's/[[:space:]]*$//'

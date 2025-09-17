@@ -20,6 +20,8 @@ AgentSpec creates comprehensive instruction guides that transform AI coding assi
 **Learn how to use AgentSpec effectively:**
 - **[Working with Templates](working-with-templates.md)** - Choose and customize the right templates
 - **[Command Line Guide](command-line-guide.md)** - Master all CLI commands and options
+- **[Shell Completion Setup](shell-completion-setup.md)** - Enable intelligent command completion
+- **[Completion Customization](completion-customization.md)** - Advanced completion configuration
 - **[Local Development](local-development.md)** - Set up AgentSpec for development and contribution
 
 ## 📖 Reference Materials
@@ -41,6 +43,9 @@ AgentSpec creates comprehensive instruction guides that transform AI coding assi
 
 **Most common commands:**
 ```bash
+# Enable shell completion (recommended first step)
+agentspec --install-completion
+
 # Generate instructions for a React app
 agentspec generate --template react_app --output instructions.md
 
@@ -55,6 +60,14 @@ agentspec interactive
 
 # See all available templates
 agentspec list-templates
+```
+
+**Completion examples:**
+```bash
+# Use TAB to complete commands, options, and values
+agentspec generate --template <TAB>    # Shows available templates
+agentspec generate --tags <TAB>        # Shows available tags
+agentspec list-tags --category <TAB>   # Shows categories
 ```
 
 **Template quick reference:**

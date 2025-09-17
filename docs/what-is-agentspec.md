@@ -51,6 +51,13 @@ AI: Creates form with:
 
 AgentSpec provides:
 
+### 🚀 **Intelligent CLI with Shell Completion**
+Fast, tab-completed command-line interface that makes AgentSpec easy to use:
+- Command and option completion
+- Dynamic completion for tags, templates, and formats
+- File path completion for projects and outputs
+- Works with bash, zsh, and fish shells
+
 ### 📋 **Instructions** (106 available)
 Specific guidelines for different aspects of development:
 - Core workflow and development practices (25 instructions)
@@ -68,10 +75,11 @@ Pre-configured instruction sets for common project types:
 - **Methodology Templates**: AI-Assisted Development, Security-Focused Development
 
 ### 🔧 **Tools**
-Command-line tools to:
+Intelligent command-line tools with shell completion to:
 - Analyze your existing projects
 - Generate custom specifications
 - Validate your setup
+- Browse available templates and instructions with tab completion
 
 ## Who Should Use AgentSpec?
 
@@ -110,11 +118,14 @@ Let's say you're building a React e-commerce app:
 # 1. Install AgentSpec
 pip install agentspec
 
-# 2. Generate instructions for your project
+# 2. Enable shell completion (optional but recommended)
+agentspec --install-completion
+
+# 3. Generate instructions for your project (use TAB completion!)
 agentspec generate --template ecommerce-application --output my-instructions.md
 
-# 3. Share my-instructions.md with your AI assistant
-# 4. Start coding with better AI assistance!
+# 4. Share my-instructions.md with your AI assistant
+# 5. Start coding with better AI assistance!
 ```
 
 The generated instructions will include:

@@ -4,7 +4,7 @@ Understanding the key concepts in AgentSpec will help you use it more effectivel
 
 ## The Three Building Blocks
 
-AgentSpec works with three main components:
+AgentSpec works with three main components, all accessible through an intelligent CLI with shell completion:
 
 ### 1. 📋 Instructions
 
@@ -330,6 +330,7 @@ Now that you understand the core concepts:
 
 - **[Working with Templates](working-with-templates.md)** - Learn to use and customize templates
 - **[Your First Project](your-first-project.md)** - Complete step-by-step tutorial
-- **[Command Line Guide](command-line-guide.md)** - Master the CLI tools
+- **[Command Line Guide](command-line-guide.md)** - Master the CLI tools with completion
+- **[Shell Completion Setup](shell-completion-setup.md)** - Set up intelligent tab completion
 - **[Instructions Reference](instructions-reference.md)** - Browse all available instructions
 - **[Templates Reference](templates-reference.md)** - Explore all templates

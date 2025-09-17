@@ -815,6 +815,18 @@ class TemplateManager:
 
         return technologies
 
+    def get_all_template_ids(self) -> List[str]:
+        """
+        Get all template IDs from loaded templates.
+
+        Returns:
+            List of template IDs sorted alphabetically
+        """
+        if not self._loaded:
+            self.load_templates()
+
+        return sorted(self._templates.keys())
+
     def apply_template_customization(
         self, template: Template, parameter_values: Dict[str, Any]
     ) -> Template:

@@ -30,6 +30,19 @@ agentspec --version
 # Should show: AgentSpec 2.0.0
 ```
 
+**Enable shell completion (recommended):**
+```bash
+# Install completion for faster CLI usage
+agentspec --install-completion
+
+# Restart your shell or source your profile
+source ~/.bashrc  # For bash
+source ~/.zshrc   # For zsh
+# Fish reloads automatically
+```
+
+This enables intelligent tab completion for commands, options, and values, making AgentSpec much faster to use.
+
 If you need help with installation, see the [Quick Start Guide](quick-start.md).
 
 ## Step 2: Set Up Your Project

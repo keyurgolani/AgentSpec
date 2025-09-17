@@ -31,45 +31,45 @@ help:
 
 # Installation targets
 install:
-	python3 -m pip install -e .
+	pip install -e .
 
 install-dev:
-	python3 -m pip install -e .[dev,test]
+	pip install -e .[dev,test]
 
 # Testing targets
 test:
-	python3 -m pytest tests/ -v --cov=agentspec --cov-report=term-missing
+	pytest tests/ -v --cov=agentspec --cov-report=term-missing
 
 test-unit:
-	python3 -m pytest tests/unit/ -v
+	pytest tests/unit/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
 
 test-integration:
-	python3 -m pytest tests/integration/ -v
+	pytest tests/integration/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
 
 test-e2e:
-	python3 -m pytest tests/e2e/ -v
+	pytest tests/e2e/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
 
 test-fast:
-	python3 -m pytest tests/ -x --tb=short
+	pytest tests/ -x --tb=short
 
 # Code quality targets
 lint:
 	@echo "Running flake8..."
-	python3 -m flake8 agentspec/ --max-line-length=88 --extend-ignore=E203,W503
+	flake8 agentspec/ tests/
 	@echo "Running mypy..."
-	python3 -m mypy agentspec/ --ignore-missing-imports
+	mypy agentspec/ --ignore-missing-imports
 
 format:
 	@echo "Running black..."
-	python3 -m black agentspec/ tests/ --line-length=88
+	black agentspec/ tests/
 	@echo "Running isort..."
-	python3 -m isort agentspec/ tests/ --profile=black --line-length=88
+	isort agentspec/ tests/ --profile=black
 
 format-check:
 	@echo "Checking black formatting..."
-	python3 -m black agentspec/ tests/ --line-length=88 --check
+	black agentspec/ tests/ --check
 	@echo "Checking isort formatting..."
-	python3 -m isort agentspec/ tests/ --profile=black --line-length=88 --check-only
+	isort agentspec/ tests/ --profile=black --check-only
 
 # Validation targets
 validate:
@@ -81,7 +81,7 @@ validate:
 # Security checks
 security:
 	@echo "Running bandit security checks..."
-	python3 -m bandit -r agentspec/ --skip B101,B603,B607
+	bandit -r agentspec/ --skip B101,B603,B607
 
 # Clean targets
 clean:
@@ -106,6 +106,13 @@ pre-commit:
 	make format-check
 	make lint
 	make test-fast
+
+# Quick checks for the specific issues that failed in GitHub Actions
+quick-security-lint:
+	@echo "Running quick security and lint checks..."
+	bandit -r agentspec/ --skip B101,B603,B607 -q
+	flake8 agentspec/ tests/ --select=F541 --max-line-length=88
+	@echo "✅ Security and critical lint checks passed!"
 
 pre-push: clean
 	@echo "Running comprehensive pre-push checks..."

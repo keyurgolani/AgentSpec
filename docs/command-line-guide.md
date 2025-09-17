@@ -10,6 +10,14 @@ pip install agentspec
 
 # Verify installation
 agentspec --version
+
+# Enable shell completion (recommended)
+agentspec --install-completion
+
+# Restart your shell or source your profile
+source ~/.bashrc  # For bash
+source ~/.zshrc   # For zsh
+# Fish reloads automatically
 ```
 
 ## Global Options
@@ -27,22 +35,27 @@ agentspec [GLOBAL_OPTIONS] COMMAND [COMMAND_OPTIONS]
 - `--version` - Show version information
 - `--help` - Show help information
 
+**Completion Options:**
+- `--install-completion` - Install shell completion for current shell
+- `--show-completion` - Display completion script for manual installation
+- `--completion-status` - Show completion installation status
+
 ## Commands Overview
 
-AgentSpec provides 10 commands:
+AgentSpec provides 10 commands with intelligent shell completion:
 
-| Command | Purpose | Example |
-|---------|---------|---------|
-| `generate` | Generate specifications | `agentspec generate --template react_app` |
-| `list-templates` | Show available templates | `agentspec list-templates` |
-| `list-instructions` | Show available instructions | `agentspec list-instructions --tag testing` |
-| `list-tags` | Show available tags | `agentspec list-tags` |
-| `analyze` | Analyze project structure | `agentspec analyze ./my-project` |
-| `integrate` | Integrate AI best practices | `agentspec integrate .` |
-| `interactive` | Run interactive wizard | `agentspec interactive` |
-| `validate` | Validate specification files | `agentspec validate spec.md` |
-| `version` | Show version information | `agentspec version` |
-| `help` | Show help for commands | `agentspec help generate` |
+| Command | Purpose | Example | Completion Support |
+|---------|---------|---------|-------------------|
+| `generate` | Generate specifications | `agentspec generate --template react_app` | ✅ Tags, templates, formats |
+| `list-templates` | Show available templates | `agentspec list-templates` | ✅ Project types |
+| `list-instructions` | Show available instructions | `agentspec list-instructions --tag testing` | ✅ Tags, categories |
+| `list-tags` | Show available tags | `agentspec list-tags` | ✅ Categories |
+| `analyze` | Analyze project structure | `agentspec analyze ./my-project` | ✅ Directory paths |
+| `integrate` | Integrate AI best practices | `agentspec integrate .` | ✅ Directory paths, formats |
+| `interactive` | Run interactive wizard | `agentspec interactive` | ✅ Basic completion |
+| `validate` | Validate specification files | `agentspec validate spec.md` | ✅ File paths |
+| `version` | Show version information | `agentspec version` | ✅ Basic completion |
+| `help` | Show help for commands | `agentspec help generate` | ✅ Command names |
 
 ## Command Details
 
@@ -96,6 +109,28 @@ agentspec generate --project-path ./my-project --tags auto --output project-spec
 
 # JSON output for programmatic use
 agentspec generate --template react-frontend --format json --output spec.json
+```
+
+#### Completion Examples
+
+Use TAB completion to discover and select options quickly:
+
+```bash
+# Discover available templates
+agentspec generate --template <TAB>
+# Shows: react-app, python-api, nodejs-api, vue-frontend, mobile-app, etc.
+
+# Complete tag names
+agentspec generate --tags front<TAB>
+# Completes to: frontend
+
+# Multiple tags with comma separation
+agentspec generate --tags frontend,test<TAB>
+# Completes to: testing (after the comma)
+
+# Output format completion
+agentspec generate --format <TAB>
+# Shows: markdown, json, yaml
 ```
 
 ### `list-templates` - Show Available Templates
@@ -448,6 +483,92 @@ For detailed troubleshooting:
 # Enable debug logging
 AGENTSPEC_LOG_LEVEL=DEBUG agentspec generate --template react-frontend
 ```
+
+## Shell Completion
+
+AgentSpec provides intelligent shell completion for all commands, options, and values.
+
+### Quick Setup
+
+```bash
+# Install completion for your current shell
+agentspec --install-completion
+
+# Restart your shell or reload configuration
+source ~/.bashrc  # Bash
+source ~/.zshrc   # Zsh
+# Fish reloads automatically
+```
+
+### Completion Features
+
+**Command Completion:**
+```bash
+agentspec <TAB>
+# Shows: analyze, generate, help, integrate, interactive, list-instructions, list-tags, list-templates, validate, version
+```
+
+**Option Completion:**
+```bash
+agentspec generate --<TAB>
+# Shows: --format, --instructions, --language, --no-metadata, --output, --project-path, --tags, --template
+```
+
+**Dynamic Value Completion:**
+```bash
+agentspec generate --tags <TAB>
+# Shows: accessibility, api, backend, core, frontend, testing, security, performance, etc.
+
+agentspec generate --template <TAB>
+# Shows: react-app, python-api, nodejs-api, vue-frontend, mobile-app, etc.
+
+agentspec list-tags --category <TAB>
+# Shows: General, Testing, Frontend, Backend, Languages, DevOps, Architecture
+```
+
+**File Path Completion:**
+```bash
+agentspec generate --output <TAB>
+# Shows files and directories for output paths
+
+agentspec analyze <TAB>
+# Shows directories for project analysis
+```
+
+### Completion Status
+
+Check if completion is properly installed:
+
+```bash
+# Check completion status
+agentspec --completion-status
+
+# Show completion script (for manual installation)
+agentspec --show-completion
+```
+
+### Troubleshooting Completion
+
+**Completion not working:**
+```bash
+# Reinstall completion
+agentspec --install-completion
+
+# Check shell compatibility
+echo $SHELL
+
+# Reload shell configuration
+source ~/.bashrc  # or ~/.zshrc
+```
+
+**Slow completion:**
+- First completion may take up to 1 second (loading data)
+- Subsequent completions are cached and fast
+- Use specific prefixes to narrow results
+
+For detailed completion setup and customization, see:
+- [Shell Completion Setup Guide](shell-completion-setup.md)
+- [Completion Customization Guide](completion-customization.md)
 
 ## Advanced Usage
 

@@ -207,7 +207,13 @@ class TestAgentSpecCLI:
         with patch.object(cli, "create_parser") as mock_parser:
             mock_parser_instance = Mock()
             mock_parser_instance.parse_args.return_value = Namespace(
-                command=None, quiet=False, verbose=False, config=None
+                command=None,
+                quiet=False,
+                verbose=False,
+                config=None,
+                install_completion=False,
+                show_completion=False,
+                completion_status=False,
             )
             mock_parser_instance.print_help = Mock()
             mock_parser.return_value = mock_parser_instance
