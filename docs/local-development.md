@@ -26,6 +26,10 @@ pip install -e ".[dev]"
 
 # Verify installation
 agentspec --version
+
+# Enable shell completion for development
+agentspec --install-completion
+source ~/.bashrc  # or ~/.zshrc for zsh
 ```
 
 ### Development Dependencies

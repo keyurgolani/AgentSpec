@@ -14,7 +14,29 @@ agentspec --version
 # Should show: AgentSpec 2.0.0
 ```
 
-## Step 2: Choose Your Path
+## Step 2: Enable Shell Completion (Optional but Recommended)
+
+AgentSpec provides intelligent command-line completion that makes it much faster to use:
+
+```bash
+# Install completion for your current shell
+agentspec --install-completion
+
+# Restart your shell or source your profile
+source ~/.bashrc  # For bash
+source ~/.zshrc   # For zsh
+# Fish reloads automatically
+```
+
+**Test completion:**
+```bash
+agentspec generate --template <TAB>
+# Should show available templates: react_app, python-api, etc.
+```
+
+For detailed setup instructions, see the [Shell Completion Setup Guide](shell-completion-setup.md).
+
+## Step 3: Choose Your Path
 
 ### 🎯 Option A: Use a Template (Recommended)
 

@@ -15,6 +15,9 @@ AgentSpec creates comprehensive instruction guides that transform AI coding assi
 # Install AgentSpec
 pip install agentspec
 
+# Enable shell completion (optional but recommended)
+agentspec --install-completion
+
 # Generate instructions for a React app
 agentspec generate --template react_app --output react-instructions.md
 
@@ -42,15 +45,19 @@ agentspec interactive
 ## 🎯 How It Works
 
 ### 1. Choose Your Project Type
+
 Pick from 15 templates like "React App", "Python API", "E-commerce Site", etc.
 
 ### 2. Get Custom Instructions
+
 AgentSpec generates a detailed instruction file tailored to your project.
 
 ### 3. Share with AI
+
 Give the instructions to your AI coding assistant (ChatGPT, Copilot, Claude, etc.).
 
 ### 4. Get Better Code
+
 Your AI now follows professional standards and best practices automatically.
 
 ## 📋 Available Templates
@@ -58,6 +65,7 @@ Your AI now follows professional standards and best practices automatically.
 AgentSpec includes 15 ready-to-use templates:
 
 **Technology Templates:**
+
 - `react_app` - React web applications with TypeScript
 - `python-api` - Python REST APIs with FastAPI
 - `nodejs-api` - Node.js APIs with Express
@@ -65,6 +73,7 @@ AgentSpec includes 15 ready-to-use templates:
 - `mobile-app` - Cross-platform mobile apps
 
 **Domain Templates:**
+
 - `saas-application` - SaaS platforms with billing
 - `ecommerce-application` - Online stores and marketplaces
 - `fintech-application` - Financial applications
@@ -72,11 +81,13 @@ AgentSpec includes 15 ready-to-use templates:
 - `data-science-application` - ML and analytics platforms
 
 **Architecture Templates:**
+
 - `web-application` - General web applications
 - `enterprise-web-application` - Large-scale enterprise apps
 - `microservice` - Microservice architectures
 
 **Methodology Templates:**
+
 - `ai-assisted-development` - AI-first development practices
 - `security-focused-development` - Security-critical applications
 
@@ -131,12 +142,14 @@ agentspec list-instructions --tag testing
 ## 💡 Real Example
 
 **Without AgentSpec:**
+
 ```
 You: "Create a React login form"
 AI: Creates basic form with no validation, security issues, no tests
 ```
 
 **With AgentSpec:**
+
 ```
 You: "Create a React login form" + AgentSpec instructions
 AI: Creates form with:
@@ -153,18 +166,23 @@ The difference: **Production-ready code that follows industry best practices.**
 ## 📚 Documentation
 
 **New to AgentSpec?**
+
 - **[What is AgentSpec?](docs/what-is-agentspec.md)** - Simple explanation for beginners
 - **[Quick Start Guide](docs/quick-start.md)** - Get running in 5 minutes
 - **[Your First Project](docs/your-first-project.md)** - Complete step-by-step tutorial
 
 **Reference & Guides:**
+
 - **[Core Concepts](docs/core-concepts.md)** - Understanding instructions, templates, and specs
-- **[Command Line Guide](docs/command-line-guide.md)** - Complete CLI reference
+- **[Command Line Guide](docs/command-line-guide.md)** - Complete CLI reference with completion
+- **[Shell Completion Setup](docs/shell-completion-setup.md)** - Shell completion installation guide
 - **[Working with Templates](docs/working-with-templates.md)** - Using and customizing templates
 
 **Advanced:**
+
 - **[Instructions Reference](docs/instructions-reference.md)** - All available instructions
 - **[Templates Reference](docs/templates-reference.md)** - All available templates
+- **[Completion Customization](docs/completion-customization.md)** - Advanced completion configuration
 - **[API Documentation](docs/api-reference.md)** - Python API for advanced usage
 - **[Examples](examples/)** - Real-world project examples
 
@@ -173,6 +191,7 @@ The difference: **Production-ready code that follows industry best practices.**
 ### Templates by Category
 
 **Technology Templates:**
+
 - `react_app` - React applications with TypeScript
 - `python-api` - Python REST APIs with FastAPI
 - `nodejs-api` - Node.js APIs with Express
@@ -180,6 +199,7 @@ The difference: **Production-ready code that follows industry best practices.**
 - `mobile-app` - Cross-platform mobile apps
 
 **Domain Templates:**
+
 - `saas-application` - SaaS platforms with billing
 - `ecommerce-application` - E-commerce platforms
 - `fintech-application` - Financial applications
@@ -187,21 +207,25 @@ The difference: **Production-ready code that follows industry best practices.**
 - `data-science-application` - ML and data platforms
 
 **Architecture Templates:**
+
 - `web-application` - General web applications
 - `enterprise-web-application` - Enterprise-scale apps
 - `microservice` - Microservice architectures
 
 **Methodology Templates:**
+
 - `ai-assisted-development` - AI-first development
 - `security-focused-development` - Security-critical apps
 
 ### Instruction Categories
 
 **Core Instructions (Always Included):**
+
 - `core` - Fundamental development practices (25 instructions)
 - `workflow` - Development workflow and process (included in core)
 
 **Specialized Instructions:**
+
 - `frontend` - Frontend development (12 instructions)
 - `backend` - Backend development (15 instructions)
 - `testing` - Testing strategies (9 instructions)
@@ -209,6 +233,7 @@ The difference: **Production-ready code that follows industry best practices.**
 - `performance` - Performance optimization (distributed across categories)
 
 **Technology-Specific:**
+
 - `python`, `javascript`, `typescript` - Language-specific guidelines
 - `react`, `vue`, `angular` - Framework-specific practices
 - `api`, `database`, `docker` - Technology-specific instructions
@@ -216,12 +241,14 @@ The difference: **Production-ready code that follows industry best practices.**
 ## 🔧 Who Should Use AgentSpec?
 
 **Perfect for:**
+
 - **Developers using AI assistants** (GitHub Copilot, ChatGPT, Claude, etc.)
 - **Teams** who want consistent coding standards
 - **Beginners** learning best practices
 - **Experienced developers** scaling their knowledge
 
 **Especially useful if you:**
+
 - Want AI to generate professional-grade code, not just examples
 - Need to ensure security and quality in AI-generated code
 - Want consistent standards across projects and team members
@@ -258,6 +285,7 @@ The difference: **Production-ready code that follows industry best practices.**
 **Common issues and solutions:**
 
 **Installation problems:**
+
 ```bash
 # If pip install fails, try:
 pip install --upgrade pip
@@ -268,6 +296,7 @@ pip install "agentspec[dev]" --no-deps
 ```
 
 **Command not found:**
+
 ```bash
 # Make sure AgentSpec is in your PATH
 which agentspec
@@ -277,12 +306,26 @@ python -m agentspec --version
 ```
 
 **Template not working:**
+
 ```bash
 # List available templates:
 agentspec list-templates
 
 # Use exact template ID:
 agentspec generate --template react_app --output instructions.md
+```
+
+**Shell completion not working:**
+
+```bash
+# Install completion for your shell
+agentspec --install-completion
+
+# Or show completion script for manual setup
+agentspec --show-completion
+
+# Check completion status
+agentspec --completion-status
 ```
 
 **Need more help?** Check our [GitHub Discussions](https://github.com/keyurgolani/AgentSpec/discussions)
@@ -314,11 +357,13 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## 🚀 Quick Links
 
 **New to AgentSpec?**
+
 - **[What is AgentSpec?](docs/what-is-agentspec.md)** - Simple explanation
 - **[Quick Start](docs/quick-start.md)** - Get running in 5 minutes
 - **[Your First Project](docs/your-first-project.md)** - Complete tutorial
 
 **Ready to use?**
+
 - **[Examples](examples/)** - Real-world project examples
 - **[Command Reference](docs/command-line-guide.md)** - All CLI commands
 - **[Templates](docs/templates-reference.md)** - Browse all templates

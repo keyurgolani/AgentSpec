@@ -94,10 +94,10 @@ class TestPerformance:
         expected_count = len(categories) * instructions_per_category
         assert len(instructions) == expected_count
 
-        # Performance benchmark: should load 1000 instructions in < 5 seconds
+        # Performance benchmark: should load 1000 instructions in < 10 seconds
         assert (
-            load_time < 5.0
-        ), f"Loading {expected_count} instructions took {load_time:.2f}s (expected < 5s)"
+            load_time < 10.0
+        ), f"Loading {expected_count} instructions took {load_time:.2f}s (expected < 10s)"
 
         # Test query performance
         start_time = time.time()

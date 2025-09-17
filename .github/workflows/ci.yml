@@ -135,7 +135,7 @@ jobs:
 
     - name: Check code formatting with black
       run: |
-        black --check --diff --line-length=88 agentspec/ tests/
+        black --check --diff agentspec/ tests/
 
     - name: Check import sorting with isort
       run: |

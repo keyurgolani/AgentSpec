@@ -11,6 +11,13 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 
+try:
+    import argcomplete
+
+    ARGCOMPLETE_AVAILABLE = True
+except ImportError:
+    ARGCOMPLETE_AVAILABLE = False
+
 from .. import __version__
 from ..core.context_detector import ContextDetector
 from ..core.instruction_database import InstructionDatabase
@@ -29,6 +36,18 @@ from .commands import (
     list_templates_command,
     validate_spec_command,
     version_command,
+)
+from .completers import (
+    comma_separated_instruction_completer,
+    comma_separated_tag_completer,
+    format_completer,
+    output_format_completer,
+    tag_completer,
+)
+from .completion_install import (
+    completion_status_command,
+    install_completion_command,
+    show_completion_command,
 )
 
 
@@ -116,6 +135,17 @@ Examples:
   agentspec analyze ./my-project --output analysis.json
   agentspec integrate ./my-project --analyze-only
   agentspec validate my-spec.md
+
+Shell Completion:
+  agentspec --install-completion     # Install completion for current shell
+  agentspec --show-completion        # Show completion script
+  agentspec --completion-status      # Check completion status
+
+Completion Examples:
+  agentspec generate --tags <TAB>    # Complete available tags
+  agentspec generate --template <TAB> # Complete template names
+  agentspec list-tags --category <TAB> # Complete categories
+  agentspec generate --format <TAB>   # Complete output formats
             """,
         )
 
@@ -139,6 +169,23 @@ Examples:
             action="version",
             version=f"%(prog)s {__version__}",
             help="Show version information",
+        )
+
+        # Completion installation options
+        parser.add_argument(
+            "--install-completion",
+            action="store_true",
+            help="Install shell completion for AgentSpec CLI",
+        )
+        parser.add_argument(
+            "--show-completion",
+            action="store_true",
+            help="Show completion script for manual installation",
+        )
+        parser.add_argument(
+            "--completion-status",
+            action="store_true",
+            help="Show completion installation status",
         )
 
         # Create subparsers
@@ -285,7 +332,98 @@ Examples:
             help="Show help for specific command",
         )
 
+        # Add completion support
+        self._add_completion_support(parser)
+
         return parser
+
+    def _add_completion_support(self, parser: argparse.ArgumentParser) -> None:
+        """
+        Add argcomplete completion support to parser.
+
+        Args:
+            parser: ArgumentParser to add completion to
+        """
+        if not ARGCOMPLETE_AVAILABLE:
+            return
+
+        try:
+            # Import completers
+            from .completers import (  # noqa: F401
+                category_completer,
+                project_type_completer,
+                template_completer,
+            )
+
+            # Configure completers for subparser actions
+            for action in parser._actions:
+                if isinstance(action, argparse._SubParsersAction):
+                    for choice, subparser in action.choices.items():
+                        self._configure_subparser_completers(subparser, choice)
+
+            # Enable argcomplete
+            argcomplete.autocomplete(parser)
+
+        except Exception as e:
+            # Silently fail if completion setup fails
+            if hasattr(logging, "getLogger"):
+                logger = logging.getLogger(__name__)
+                logger.debug(f"Failed to setup completion: {e}")
+
+    def _configure_subparser_completers(
+        self, subparser: argparse.ArgumentParser, command: str
+    ) -> None:
+        """
+        Configure completers for a specific subparser.
+
+        Args:
+            subparser: Subparser to configure
+            command: Command name for context
+        """
+        from .completers import (
+            category_completer,
+            output_file_completer,
+            project_directory_completer,
+            project_type_completer,
+            spec_file_completer,
+            template_completer,
+        )
+
+        for action in subparser._actions:
+            if not hasattr(action, "dest"):
+                continue
+
+            dest = action.dest
+
+            # Configure completers based on argument destination
+            if dest == "format":
+                action.completer = format_completer  # type: ignore
+            elif dest == "output_format":
+                action.completer = output_format_completer  # type: ignore
+            elif dest == "tag":
+                action.completer = tag_completer  # type: ignore
+            elif dest == "tags":
+                action.completer = comma_separated_tag_completer  # type: ignore
+            elif dest == "instructions":
+                action.completer = comma_separated_instruction_completer  # type: ignore
+            elif dest == "template":
+                action.completer = template_completer  # type: ignore
+            elif dest == "category":
+                action.completer = category_completer  # type: ignore
+            elif dest == "project_type":
+                action.completer = project_type_completer  # type: ignore
+            elif dest == "output":
+                # File completion for output files - supports files and directories
+                if output_file_completer:
+                    action.completer = output_file_completer  # type: ignore
+            elif dest == "project_path":
+                # Directory completion for project paths - directories only
+                if project_directory_completer:
+                    action.completer = project_directory_completer  # type: ignore
+            elif dest == "spec_file":
+                # Spec file completion - prioritize markdown files
+                if spec_file_completer:
+                    action.completer = spec_file_completer  # type: ignore
 
     def run(self, args: Optional[List[str]] = None) -> int:
         """
@@ -303,6 +441,14 @@ Examples:
         except SystemExit as e:
             # Handle invalid commands gracefully
             return int(e.code) if e.code is not None else 1
+
+        # Handle completion installation commands first (don't need services)
+        if parsed_args.install_completion:
+            return install_completion_command()
+        elif parsed_args.show_completion:
+            return show_completion_command()
+        elif parsed_args.completion_status:
+            return completion_status_command()
 
         # Handle global options
         if parsed_args.quiet:
