@@ -116,6 +116,97 @@
         "created_at": "2024-01-01T00:00:00Z",
         "updated_at": "2024-12-15T00:00:00Z"
       }
+    },
+    {
+      "id": "jest_cleanup_lifecycle",
+      "version": "1.0.0",
+      "tags": ["testing", "jest", "cleanup", "lifecycle", "async"],
+      "content": "Always use Jest lifecycle hooks (beforeEach, afterEach, beforeAll, afterAll) to properly clean up resources. In afterEach/afterAll, close database connections, clear timers, remove event listeners, and terminate any spawned processes. Use jest.clearAllTimers() and jest.restoreAllMocks() in afterEach to prevent test interference.",
+      "metadata": {
+        "category": "testing",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "jest_async_cleanup",
+      "version": "1.0.0",
+      "tags": ["testing", "jest", "async", "cleanup", "promises"],
+      "content": "Properly handle async operations in tests by awaiting all promises and cleaning up async resources. Use async/await in lifecycle hooks, clear all setTimeout/setInterval with clearTimeout/clearInterval, and ensure all async operations complete before test ends. Mock timers with jest.useFakeTimers() when testing time-dependent code.",
+      "metadata": {
+        "category": "testing",
+        "priority": 9,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "jest_database_cleanup",
+      "version": "1.0.0",
+      "tags": ["testing", "jest", "database", "cleanup", "connections"],
+      "content": "Always close database connections in afterAll hooks. For MongoDB, call await mongoose.connection.close(). For PostgreSQL/MySQL, call await pool.end() or await connection.end(). Use beforeAll to establish connections and afterAll to close them. Consider using @shelf/jest-mongodb or similar for automatic cleanup.",
+      "metadata": {
+        "category": "testing",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "jest_server_cleanup",
+      "version": "1.0.0",
+      "tags": ["testing", "jest", "server", "cleanup", "http"],
+      "content": "Close HTTP servers in afterAll hooks using server.close() and await new Promise(resolve => server.close(resolve)). For Express apps, store server instance from app.listen() and close it properly. Use supertest for HTTP testing without starting actual servers when possible.",
+      "metadata": {
+        "category": "testing",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "jest_event_cleanup",
+      "version": "1.0.0",
+      "tags": ["testing", "jest", "events", "cleanup", "listeners"],
+      "content": "Remove all event listeners in afterEach/afterAll hooks. Use process.removeAllListeners() for process events, emitter.removeAllListeners() for custom emitters. Track added listeners and remove them explicitly. Avoid global event listeners that persist between tests.",
+      "metadata": {
+        "category": "testing",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "jest_mocking_strategy",
+      "version": "1.0.0",
+      "tags": ["testing", "jest", "mocking", "isolation", "dependencies"],
+      "content": "Mock external dependencies to prevent real connections and resources. Use jest.mock() for modules, jest.spyOn() for methods, and manual mocks for complex dependencies. Mock database connections, HTTP clients, file system operations, and timers to avoid open handles.",
+      "metadata": {
+        "category": "testing",
+        "priority": 8,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "id": "jest_configuration_cleanup",
+      "version": "1.0.0",
+      "tags": ["testing", "jest", "configuration", "setup", "teardown"],
+      "content": "Configure Jest with proper setup and teardown files. Use setupFilesAfterEnv for global test setup, create globalTeardown.js for cleanup, set forceExit: true only as last resort. Use detectOpenHandles: true during development to identify leaks. Set testTimeout appropriately for async operations.",
+      "metadata": {
+        "category": "testing",
+        "priority": 7,
+        "author": "AgentSpec",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
     }
   ]
 }
