@@ -118,6 +118,32 @@
         "created_at": "2024-01-01T00:00:00Z",
         "updated_at": "2024-01-01T00:00:00Z"
       }
+    },
+    {
+      "id": "cicd_local_verification",
+      "version": "1.0.0",
+      "tags": ["devops", "cicd", "workflows", "verification", "consistency", "automation", "testing"],
+      "content": "When writing GitHub Actions or other CI/CD workflows, prefer using commands that are used locally for verification of the project. Use the same commands developers run locally (make test, npm test, pytest, etc.) rather than CI-specific alternatives. This ensures that as long as users make sure all tests pass locally, the workflows are most likely to pass in the remote environment. Maintain consistency between local development workflow and CI/CD pipeline. Document the exact commands used in both environments and ensure they produce identical results.",
+      "metadata": {
+        "category": "devops",
+        "priority": 8,
+        "author": "AgentSpec Enhanced",
+        "created_at": "2024-12-15T00:00:00Z",
+        "updated_at": "2024-12-15T00:00:00Z"
+      }
+    },
+    {
+      "id": "quality_gate_enforcement",
+      "version": "1.0.0",
+      "tags": ["devops", "quality-gates", "pre-commit", "pre-push", "validation", "standards", "enforcement"],
+      "content": "Never bypass pre-commit, pre-push, or other quality checks just to achieve the goal of finishing the assigned task unless explicitly mentioned by the user. The goal is always to correctly implement the project, make sure that all checks and verifications pass indicating the correctness of the code, and detect any regression and fix it. Quality gates exist for a reason - they prevent bugs, maintain code standards, and ensure project integrity. If quality checks fail, fix the underlying issues rather than bypassing the checks. Treat quality gate failures as bugs that must be resolved, not obstacles to be circumvented.",
+      "metadata": {
+        "category": "devops",
+        "priority": 10,
+        "author": "AgentSpec Enhanced",
+        "created_at": "2024-12-15T00:00:00Z",
+        "updated_at": "2024-12-15T00:00:00Z"
+      }
     }
   ]
 }

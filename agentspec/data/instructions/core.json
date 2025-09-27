@@ -312,6 +312,26 @@
       }
     },
     {
+      "id": "documentation_organization",
+      "version": "1.0.0",
+      "tags": [
+        "core",
+        "documentation",
+        "organization",
+        "structure",
+        "maintenance",
+        "standards"
+      ],
+      "content": "Organize documentation following standard open source practices: 1) Keep root directory clean with only essential markdown files (README.md, CONTRIBUTING.md, LICENSE, etc.). 2) Place detailed documentation in dedicated docs/ directory with clear hierarchy and navigation. 3) Eliminate duplication - each piece of information should have a single source of truth. 4) Remove temporary, development, analysis, and testing files that aren't needed for the final product. 5) Ensure README.md is concise and focused on essentials, linking to detailed docs. 6) Create clear navigation paths from overview to specific guides. 7) Organize examples in dedicated examples/ directory with streamlined descriptions. 8) Update all cross-references when reorganizing to prevent broken links. 9) Follow consistent naming conventions and file structure. 10) Regularly audit and clean up outdated or redundant documentation.",
+      "metadata": {
+        "category": "core",
+        "priority": 7,
+        "author": "AgentSpec Enhanced",
+        "created_at": "2024-12-15T00:00:00Z",
+        "updated_at": "2024-12-15T00:00:00Z"
+      }
+    },
+    {
       "id": "project_initialization",
       "version": "1.0.0",
       "tags": [

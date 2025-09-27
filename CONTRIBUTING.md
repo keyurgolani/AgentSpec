@@ -14,17 +14,17 @@ We welcome contributions to AgentSpec! This guide will help you get started.
    ```bash
    pip install -e ".[dev]"
    ```
-4. Generate a development spec:
+4. Verify installation:
    ```bash
-   agentspec generate --tags general,testing,python --output dev_spec.md
+   agentspec --version
    ```
 
 ## Code Standards
 
-- Follow the project's AgentSpec guidelines in `project_spec.md`
 - Write tests before implementation (TDD)
 - Update documentation for any public API changes
 - Ensure all validation checks pass before submitting PR
+- Follow Python best practices and the existing code style
 
 ## Adding New Instructions
 
@@ -78,13 +78,13 @@ To add new instructions to the database:
 
    # Test CLI functionality
    agentspec list-tags
-   agentspec generate --tags general,testing --output test_spec.md
+   agentspec list-templates
    ```
 
 4. Update documentation:
    - Update README.md if adding new features
    - Add examples to docs/ if applicable
-   - Update project_context.md with lessons learned
+   - Update relevant documentation files
 
 5. Submit PR with:
    - Clear description of changes

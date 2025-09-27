@@ -2,15 +2,15 @@
   "instructions": [
     {
       "id": "command_timeout_management",
-      "version": "1.0.0",
-      "tags": ["reliability", "automation", "error-handling", "timeout", "resilience"],
-      "content": "Attach timeouts to every automated command to prevent hanging or blocking on user input. Implement timeout mechanisms that allow the agent to regain control and attempt alternative approaches or fix issues when commands don't complete within expected timeframes. Include retry logic with exponential backoff and fallback strategies for critical operations.",
+      "version": "1.1.0",
+      "tags": ["reliability", "automation", "error-handling", "timeout", "resilience", "execution"],
+      "content": "When executing terminal commands, identify an appropriate, very lenient timeout in which that command should definitely finish executing. Only execute commands with the identified timeout to ensure the agent is not stuck waiting on a command that is hung or waiting for user input. When a command times out, observe the reason for the timeout and plan next steps accordingly. Use timeouts that are generous enough to allow normal completion but prevent indefinite hanging. For build commands use 10-15 minutes, for tests use 5-10 minutes, for simple operations use 1-2 minutes, for complex operations like large downloads or compilations use 20-30 minutes. Include retry logic with exponential backoff and fallback strategies for critical operations.",
       "metadata": {
         "category": "reliability",
-        "priority": 7,
-        "author": "AgentSpec",
+        "priority": 8,
+        "author": "AgentSpec Enhanced",
         "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
+        "updated_at": "2024-12-15T00:00:00Z"
       }
     },
     {
