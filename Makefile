@@ -38,36 +38,36 @@ install-dev:
 
 # Testing targets
 test:
-	pytest tests/ -v --cov=agentspec --cov-report=term-missing
+	python3 -m pytest tests/ -v --cov=agentspec --cov-report=term-missing
 
 test-unit:
-	pytest tests/unit/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
+	python3 -m pytest tests/unit/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
 
 test-integration:
-	pytest tests/integration/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
+	python3 -m pytest tests/integration/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
 
 test-e2e:
-	pytest tests/e2e/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
+	python3 -m pytest tests/e2e/ -v --cov=agentspec --cov-report=term-missing --cov-fail-under=0
 
 test-fast:
-	pytest tests/ -x --tb=short
+	python3 -m pytest tests/ -x --tb=short
 
 # Code quality targets
 lint:
 	@echo "Running flake8..."
-	flake8 agentspec/ tests/
+	python3 -m flake8 agentspec/ tests/
 	@echo "Running mypy..."
-	mypy agentspec/ --ignore-missing-imports
+	python3 -m mypy agentspec/ --ignore-missing-imports
 
 format:
 	@echo "Running black..."
-	black agentspec/ tests/
+	python3 -m black agentspec/ tests/
 	@echo "Running isort..."
 	python3 -m isort agentspec/ tests/ --profile=black
 
 format-check:
 	@echo "Checking black formatting..."
-	black agentspec/ tests/ --check
+	python3 -m black agentspec/ tests/ --check
 	@echo "Checking isort formatting..."
 	python3 -m isort agentspec/ tests/ --profile=black --check-only
 
@@ -81,7 +81,7 @@ validate:
 # Security checks
 security:
 	@echo "Running bandit security checks..."
-	bandit -r agentspec/ --skip B101,B603,B607
+	python3 -m bandit -r agentspec/ --skip B101,B603,B607
 
 # Clean targets
 clean:
@@ -110,8 +110,8 @@ pre-commit:
 # Quick checks for the specific issues that failed in GitHub Actions
 quick-security-lint:
 	@echo "Running quick security and lint checks..."
-	bandit -r agentspec/ --skip B101,B603,B607 -q
-	flake8 agentspec/ tests/ --select=F541 --max-line-length=88
+	python3 -m bandit -r agentspec/ --skip B101,B603,B607 -q
+	python3 -m flake8 agentspec/ tests/ --select=F541 --max-line-length=88
 	@echo "✅ Security and critical lint checks passed!"
 
 pre-push: clean
