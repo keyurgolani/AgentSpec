@@ -63,13 +63,13 @@ format:
 	@echo "Running black..."
 	black agentspec/ tests/
 	@echo "Running isort..."
-	isort agentspec/ tests/ --profile=black
+	python3 -m isort agentspec/ tests/ --profile=black
 
 format-check:
 	@echo "Checking black formatting..."
 	black agentspec/ tests/ --check
 	@echo "Checking isort formatting..."
-	isort agentspec/ tests/ --profile=black --check-only
+	python3 -m isort agentspec/ tests/ --profile=black --check-only
 
 # Validation targets
 validate:
